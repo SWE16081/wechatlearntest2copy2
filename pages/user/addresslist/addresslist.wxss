@@ -1,0 +1,102 @@
+page{
+  background-color:#bfbfbf36; 
+}
+.main{
+  /* background-color:#bfbfbf36;  */
+  /* border:1px solid red; */
+}
+.informationmagin{
+  /* background-color:#bfbfbf36;  */
+    margin-top: 20px;
+}
+.information{
+  /* border:1px solid red; */
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  margin-left: 8px;
+  margin-right: 8px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  /* 字体间距 */
+   /* letter-spacing: 1px; */
+
+}
+.inforleft{
+    display: flex;
+  flex-direction: column;
+  width: 85%;
+  height: 100%;
+  margin-left: 8px;
+   /* border:1px solid red; */
+}
+.inforright{
+    display: flex;
+  align-items: center;
+  justify-content: center;
+    width: 15%;
+  height: 100%;
+  /* font-size: 14px;
+  color:rgba(187, 183, 183, 0.726); */
+
+    /* border:1px solid red; */
+}
+
+.informationup{
+  height: 50%;
+  width: 100%;
+  /* border:1px solid greenyellow;  */
+  display: flex;
+  flex-direction: row;
+   align-items: center;
+ 
+}
+.informationdown{
+  height: 50%;
+  width: 100%;
+  /* border:1px solid greenyellow;  */
+    font-size: 14px;
+}
+.name{
+  height: 100%;
+  /* border:1px solid red; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  letter-spacing: 2px;
+}
+.phone{
+    height: 100%;
+    margin-left: 8px;
+    /* border:1px solid red; */
+    display: flex;
+    align-items: center;
+    color:#bfbfbf;
+       font-size: 14px;
+       letter-spacing: 2px;
+}
+.addtext{
+ color:rgba(255, 51, 0, 0.87);
+}
+.inforfoot{
+  position: fixed;
+  left: 0px;
+  bottom: 0px;
+  width: 100%;
+  z-index: 1;
+    border-top: 1px solid #bfbfbf;
+  box-shadow: 0 0 10px #bfbfbf;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color:rgba(255, 51, 0, 0.87);
+}
+.footbtn{
+    height:100%;
+    width:100%;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(255, 51, 0, 0.87);
+    color: #ffffff;
+}

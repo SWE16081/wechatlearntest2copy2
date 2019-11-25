@@ -1,0 +1,187 @@
+/* pages/user/orderdetail/orderdetail.wxss */
+page{
+  background: #bfbfbf36;
+}
+.head{
+    height:240px;
+    width:100%;
+     background: -webkit-linear-gradient(left,#21bd9b,#40b85e,#5ad612);
+    display: flex;
+    /* justify-content: center; */
+    /* align-items: center; */
+}
+.headtitle{
+  width: 100%; 
+  /* height:20px;
+  margin-top:120rpx;  */
+  border:1px solid rgba(200,200,200.0.75);
+}
+.headtitlemargin{
+  width: 96%; 
+  height:80rpx;
+  margin-left:2%;
+  margin-right:2%;
+  /* border:1px solid yellow; */
+  margin-top:180rpx; 
+  display:flex;
+  align-items:center;   
+  /* flex-direction:row; */
+}
+.headpic{
+  width:50rpx;
+  height:50rpx;
+}
+.headtext{
+  font:14px;
+  color:#ffffff;
+}
+.content{
+    margin-top:-90px;
+}
+.contentmargin{
+  width: 96%;
+  margin-left:2%;
+  margin-right:2%;
+  display:flex;
+  flex-direction:column;
+}
+.cachetlist{
+  width:100%;
+  background:#fff;
+}
+.orderinfo{
+  width:100%;
+   background:#ffffff;
+   margin-top:20rpx;
+    margin-bottom: 10px;
+}
+.cachetlistmargin{
+  width:96%;
+  /* height:200px; */
+  margin-left:2%;
+  margin-right:2%;
+  display:flex;
+  flex-direction: column;
+}
+.orderinfomargin{
+  width:96%;
+  /* height:200px; */
+  margin-left:2%;
+  margin-right:2%;
+}
+.cacontent{
+  width:96%;
+  /* height:80px; */
+  margin-left:2%;
+  margin-right:2%;
+  /* border:1px solid yellow; */
+}
+
+/* 公章详情 */
+.contentList{
+  /* width: 100px; */
+  margin-top: 4px;
+  margin-right: 8px;
+  margin-left:8px;
+  display: flex;
+  flex-direction: row;
+   align-items: center;
+  justify-content: center;
+}
+.ListLeft{
+  display: flex;
+   /* align-items: center; */
+   height: 100%;
+   width: 30%;
+   /* border:1px solid red; */
+ }
+ .ListMiddle{
+   height: 100%;
+   width: 50%;
+   /* border:1px solid red; */
+    display: flex;
+   flex-direction: column;
+   letter-spacing: 1px;
+   font-size: 14px;
+ }
+ .ListRight{
+   display: flex;
+   flex-direction: column;
+   letter-spacing: 1px;
+   font-size: 13px;
+   height: 100%;
+   width: 20%;
+   /* border:1px solid red; */
+ }
+
+ .rightUp{
+   font-size:14px;
+    display: flex;
+   justify-content: flex-end;
+   align-items: center;
+ }
+ .rightDown{
+   font-size:14px;
+    display: flex;
+   justify-content: flex-end;
+   color:#635d5da2;
+ }
+ .otherinfo{
+   display: flex;
+   flex-direction: column;
+   margin-right: 8px;
+   margin-left:8px;
+  
+
+ }
+ .otherup{
+  width: 100%;
+  display:flex;
+  align-items: center;
+  justify-content: flex-end;
+  font-size: 14px;
+}
+.price{
+  font-size: 17px;
+}
+/* 订单 */
+.ordercontent{
+width:96%;
+height:80px;
+margin-left:2%;
+margin-right:2%;
+display:flex;
+flex-direction:row;
+}
+.contentleft{
+    /* display:flex;
+    justify-content: center; */
+    width:30%;
+    height:100%;
+     /* border:1px solid red;  */
+    font-size: 14px;
+    margin-left: 8px;
+    margin-top: 8px;
+  color: rgba(0, 0, 0, 0.856);
+
+
+}
+.contentright{
+    width:70%;
+    height:100%;
+       /* border:1px solid rgb(0, 255, 128);  */
+    font-size: 14px;
+    margin-top: 8px;
+    display: flex;
+    flex-direction:column;
+    align-items: flex-end;
+    color:#635d5da2;
+}
+.address{
+   /* border:1px solid green; */
+}
+.phone{
+  /* border:1px solid green; */
+  margin-top: 5px;
+
+}

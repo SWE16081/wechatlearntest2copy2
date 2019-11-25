@@ -1,0 +1,51 @@
+/* pages/navigate/navigate.wxss */
+/* .user{
+background-color: rgb(18, 218, 18);
+  width: 80px;
+  height: 80px;
+  color:#ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.maker{
+  background-color:#be1b1b;
+  width: 80px;
+  height: 80px;
+  color:#ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+} */
+.main{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height:300px;
+  /* border:1px solid #dd240b; */
+}
+.userbutton{
+  /* width: 100px;
+  height: 80px;
+   display: flex;
+  align-items: center;
+  justify-content: center; */
+ 
+}
+.makerbutton{
+    /* width: 100px;
+  height: 80px;
+   display: flex;
+  align-items: center;
+  justify-content: center; */
+}
+.foot{
+    display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.makerregister{
+  font-size: 14px;
+  color: #38c172;
+}

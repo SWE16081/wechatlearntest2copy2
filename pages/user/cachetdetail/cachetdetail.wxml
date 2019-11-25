@@ -1,0 +1,192 @@
+<!--pages/user/cachetdetail/cachetdetail.wxml-->
+
+
+<view class="main">
+   <!-- <scroll-view> -->
+     <!-- <button class="backbutton" wx:if="{{}}">
+    </button>
+     <image class="back"src="/static/pic/back.png"></image> -->
+     <view class="head">
+      <view class="cachetpic">
+        <swiper class="cachetswiper" indicator-dots="false" autopaly="false" indicator-active-color="#ffffff">
+           <block wx:for="{{swiperUrl}}" wx:key="{{index}}">
+              <swiper-item>
+                 <image class="swiperpic" src="{{WEB}}/{{item.src}}" mode="aspectFill" ></image>
+              </swiper-item>
+           </block>
+        </swiper>
+      </view>
+    </view>
+
+    <view class="content">
+       <view class="price"> 
+              <view class="priceleftup">
+                  <view class="priceicon">￥{{mimiprice}}-{{maxprice}}</view>
+                  <view class="pricenum">{{cachet.cachetPrice}}</view>
+                  <view class="pricerighttext">优惠促销</view>
+              </view>
+              <view class="priceleftdown">原价
+                <span class="oldpricenum">￥120</span></view>
+       </view>
+       <view class="explain">
+          <view class="explaintext" >
+            <image class="explaintexticon" src="/static/pic/goods.png"></image>
+            <text decode="{{true}}">&nbsp;{{cachet[0].cachetExplain}}</text>
+          </view>
+          <view class="explainshare">
+            <image class="explainsharepic" bindtap=""src="/static/pic/share.png"></image>
+          </view>                
+       </view>
+       <view class="choose" bindtap="choosetrigger">
+            <view class="chooselabel">选择</view>
+            <view class="choosecontent" >
+            <text decode="{{true}}">请选择&nbsp;&nbsp;尺寸&nbsp;&nbsp;颜色分类</text>
+            </view>
+            <view class="choosepic">
+              <image class="choosepicicon" src="/static/pic/choose.png"></image>
+            </view>                
+       </view>
+       <view class="proparam" bindtap="proparamtrigger">
+          <view class="proparamlabel">参数</view>
+            <view class="proparamcontent" >
+            <text decode="{{true}}">查看&nbsp;&nbsp;详情</text>
+            </view>
+            <view class="proparamepic">
+              <image class="proparampicicon" src="/static/pic/choose.png"></image>
+            </view>    
+       </view>
+       <view class="res" style="">sdfsd</view>
+    </view>
+    <!-- 模态框 -->
+    <view class="mainmodel" wx-if="{{mainmodelshow}}"  bindtap="chooseclose" catchtouchmove="preventscroll"></view>
+    <view class="mainmodel" wx-if="{{mainmodelshow2}}" bindtap="proparamclose"catchtouchmove="preventscroll"></view>
+    <!-- 选择底部弹出框 -->
+    <view class="choosecont"  animation="{{animation}}"  
+         style="bottom:-{{chooHeight}}px;height:{{chooHeight}}px;">
+       <view class="chooseconthead">
+            <view class="choosecontpic">
+              <image class="choosecontpicimg" src="{{WEB}}/{{cachet[currentindex].cachetPicPath[0].src}}"></image>
+            </view>
+            <view class="chooseconinfo">
+            <view class="chooseconinfospace"></view>
+              <view class="choosecontinfoprice"><text decode="{{true}}">￥{{cachet[currentindex]['cachetPrice'][currentPriceindex].price}}</text></view>
+              <view class="chooseconttext">已选：M号白色</view>
+            </view>   
+            <view class="choosecontbackicon">
+               <image class="backpic" src="/static/pic/windowback.png" bindtap="chooseclose"></image>
+            </view>
+            
+       </view>
+       <scroll-view class="choosecontmiddleswiper" scroll-y="true" scroll-x="false">
+          <view class="choosecontmiddle">
+          
+              <view class="kindtext">种类</view>
+              <view class="kindcont">
+                <block wx:for="{{cachet}}" wx:key="{{index}}">
+                <view class="kindbtn">
+                  <button size="mini" bindtap="kindchange" style="background-color:{{item.namebgColor}}; color:{{item.namefoColor}};"
+                   data-index="{{index}}" >{{item.cachettagname}}</button>
+                </view>              
+                </block>
+              </view>
+               <view class="sizetext">尺寸</view>
+              <view class="sizecont">
+                  <block wx:for="{{cachet[currentindex]['cachetSize']}}" wx:key="{{index}}">
+                    <view class="sizebtn">
+                      <button size="mini" bindtap="sizechange" data-index="{{index}}" style="background-color:{{item.sizebgColor}}; color:{{item.sizefoColor}};">{{item.size}}</button>
+                    </view> 
+                </block>
+              </view>
+              <view class="colortext">颜色分类</view>
+              <view class="colorcont">
+                  <block wx:for="{{cachet[currentindex].cachetColor}}" wx:key="{{index}}">
+                    <view class="colorbtn">
+                      <button size="mini" bindtap="colorchange" data-index="{{index}}"style="background-color:{{item.colorbgColor}}; color:{{item.colorfoColor}};">{{item.color}}</button>
+                    </view> 
+                </block>
+              </view>
+
+            <view class="choosecontmiddlenum">
+               <view class="numleft">购买数量</view>
+               <view class="numright">
+                 <button size="mini" bindtap="nummuni">-</button>
+                 {{numinput}}
+                 <button size="mini" bindtap="numadd">+</button>
+               </view>
+            </view>
+          </view>
+       </scroll-view> 
+       <view class="choosecontfootmargin">
+         <view class="choosecontfoot">
+           <view class="chcontfoshopcar"><button class="chcontfoshopcarbtn" bindtap="addToCar" type="warn">加入购物车</button></view>
+            <view class="chcontfobuy"><button class="chcontfobuybtn" bindtap="buyNow">立即购买</button></view>
+         </view>
+       </view>
+
+    </view>
+    <!-- 参数底部弹出框 -->
+    <view class="proparamcont" animation="{{animation2}}"  
+         style="bottom:-{{paraHeight}}px;height:{{paraHeight}}px;">
+       <view class="promagin">
+          <view class="prohead">产品参数</view>
+          <scroll-view class="prosroll" scroll-y="true" scroll-x="false">
+            <block>
+              <view class="prolist">
+                <view class="prolisttitle">公章名称</view>
+                <view class="prolistcont">{{cachet.cachetName}}</view>
+              </view>
+              <view class="prolist">
+                <view class="prolisttitle">尺寸</view>
+                <view class="prolistcont">{{cachet.cachetSize}}mm</view>
+              </view>
+              <view class="prolist">
+                <view class="prolisttitle">形状</view>
+                <view class="prolistcont">{{cachet.cachetShape}}</view>
+              </view>
+              <view class="prolist">
+                <view class="prolisttitle">颜色</view>
+                <view class="prolistcont">{{cachet.cachetColor}}</view>
+              </view>
+              <view class="prolist">
+                <view class="prolisttitle">详情</view>
+                <view class="prolistcont">{{cachet.cachetExplain}}</view>
+              </view>
+              <view class="prolist">
+                <view class="prolisttitle">价格</view>
+                <view class="prolistcont">{{cachet.cachetPrice}}</view>
+              </view>
+              <view class="prolist">
+                <view class="prolisttitle">商家信息</view>
+                <view class="prolistcont">xxx公章制作公司公司备案xxx</view>
+              </view>
+            </block>
+          </scroll-view>
+          <view class="profoot">
+            <button class="profootbtn" bindtap="proparamclose">完成</button>
+          </view>
+       </view>
+    </view>
+
+      <view class="foot">
+          <view class="footleft">
+            <view class="service">
+              <view class="serviceicon"><image class="pic" src="/static/pic/service.png"></image></view>
+              <view class="servicetext">联系客服</view>
+            </view>
+            <view class="home">
+              <view class="homeicon"><image class="pic" src="/static/pic/home.png"></image></view>
+              <view class="hometxt">首页</view>
+            </view>
+          
+            <view class="shopcar">
+              <view class="shopcaricon"><image class="pic" src="/static/pic/shopcar.png"></image></view>
+              <view class="shopcartext">购物车</view>
+            </view>
+          </view>
+          <view class="footright">
+            <view class="shopcar"><button bindtap="choosetrigger" class="shopcarbutton" type="warn">加入购物车</button></view>
+            <view class="buy"><button bindtap="choosetrigger" class="buybutton">立即购买</button></view>
+          </view>
+      </view>
+   <!-- </scroll-view> -->
+</view>

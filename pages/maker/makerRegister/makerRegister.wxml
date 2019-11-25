@@ -1,0 +1,14 @@
+<!--pages/makerRegister/makerRegister.wxml-->
+<view class="formview">
+  <form bindsubmit="formSubmit">
+    <view class="section">
+      <input class="input" placeholder="帐号" name="name" type="text" auto-focus/>
+    </view>
+    <view class="section">
+      <input class="input" placeholder="密码" name="password" type="password" auto-focus/>
+    </view>
+    <view class="section">
+    <button formType="submit" type="primary">提交</button>
+    </view>
+  </form>
+</view>

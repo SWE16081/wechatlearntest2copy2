@@ -1,0 +1,116 @@
+/* pages/makerIndex/makerIndex.wxss */
+page{
+  background: #bfbfbf36;
+}
+/* 首页 */
+/* .main{
+overflow: scroll;
+} */
+.head{
+  /* background-image:  */
+  background: -webkit-linear-gradient(left,#21bd9b,#40b85e,#5ad612);
+  width: 100%;
+}
+
+.content{
+  z-index: 1;
+  position: fixed;
+  margin-top:-18px;
+  width: 100%;
+  /* border:1px solid red; */
+
+}
+.contentMargin{
+    margin-left: 2%;
+  margin-right: 2%;
+  width: 96%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.infor{
+  border-radius: 10px;
+  width: 100%;
+  background-color: #ffffff;
+  box-shadow: 4px 4px 10px #bdb7b7;
+}
+.informargin{
+   margin-left: 2%;
+  margin-right: 2%;
+    margin-top: 2%;
+  margin-bottom:2%;
+  width: 96%;
+   height: 92%;
+   display: flex;
+  flex-direction: column;
+  /* border:1px solid red; */
+}
+.make{
+  border-radius: 10px;
+  width: 100%;
+  margin-top: 20px;
+  background-color: #ffffff;
+  box-shadow: 4px 4px 10px #bdb7b7;
+  /* border:1px solid red; */
+}
+.makemargin{
+   margin-left: 2%;
+  margin-right: 2%;
+    margin-top: 2%;
+  margin-bottom:2%;
+  width: 96%;
+  height: 92%;
+  display: flex;
+  flex-direction: column;
+  /* border:1px solid red; */
+}
+.infoswiper{
+  /* border:  1px solid red; */
+}
+.swiperitem{
+   margin-left:4%;
+}
+.makecontent{
+  margin-top: 10px;
+}
+
+.tabbar{
+  z-index: 2;
+}
+/* 我的 */
+.header{
+    height:240px;
+    width:100%;
+     background: -webkit-linear-gradient(left,#21bd9b,#40b85e,#5ad612);
+    display: flex;
+    flex-direction: row;
+}
+.order{
+    width:100%;
+    margin-top: 20px;
+    background-color: #ffffff;
+}
+.headerLeft{
+  height: 100%;
+  width:30%;
+  display: flex;
+  align-items:center;
+  justify-content: center;
+}
+.headerRight{
+  height:100%;
+  width:70%;
+  /* border:1px solid red; */
+}
+.headpic{
+  border-radius: 50%;
+  height: 80px;
+  width: 80px;
+}
+.other{
+  margin-top: 20px;
+
+}
+.drop{
+  margin-top: 20px;
+}

@@ -1,0 +1,18 @@
+<!--pages/maker/cachetkindadd/cachetkindadd.wxml-->
+<view class="main">
+   <view class="content">
+     <van-cell-group>
+      <van-field
+        value=""
+        placeholder="公章种类名称"
+        bind:blur="NameClick"
+      />
+            <van-field
+        value=""
+        placeholder="公章种类说明"
+        bind:blur="ExplainClick"
+      />
+    </van-cell-group>
+    <view class="foot"><button class="submitbtn" bindtap="affirm">确认</button></view>
+   </view>
+</view>

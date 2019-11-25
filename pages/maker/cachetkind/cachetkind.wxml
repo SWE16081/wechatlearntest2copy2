@@ -1,0 +1,49 @@
+<!--pages/maker/cachetkind/cachetkind.wxml-->
+<view class="main">
+ <view class="content">
+    <van-cell
+    is-link
+    title="添加"
+    bindtap="addcachetkind"
+  />
+   <scroll-view class="makeScroll" indicator-dots="true"	scroll-x="false" scroll-y="true" 
+   indicator-active-color="#38c172" style="height:{{makeScrollHeight}}px;">
+      <block wx:for="{{cachetKindData}}" wx:key="{{index}}">
+        <view class="makeScroll-item">
+          <movable-area class="cachetarea"style="height:{{cachetHeight}}px;width:{{movableareaWdith}}px">
+            <movable-view class="cachetview" style="height:{{cachetHeight}}px;width:{{movableViewWidth}}px"
+              x="{{item.x}}" damping="100"  direction="horizontal"  animation="false"  
+              bindchange="handleMovableChange" data-index="{{index}}" 
+              capture-bind:touchstart="handleTouchestart" capture-bind:touchend="handleTouchend">
+              <view class="test">
+               <view class="makeCachetList">
+                  <view class="makeCachetListMargin" style="height:{{cachetHeight}}px;width:{{movableareaWdith}}px">  
+                     <view class="makeCachetListMarginLeft">
+                        <view class="cachetkindup">   
+                         <view class="cachetkinduptext">{{item.cakindname}}</view>                 
+                        </view>
+                        <view class="cachetkinddwon">        
+                          <!-- <view class="cachetkinddowup">公章说明</view> -->
+                          <view class="cachetkinddwondown">{{item.cachetExplain}}</view>            
+                        </view>
+                     </view>
+                     <view class="makeCachetListMarginRight" bindtap="update" data-cachetKindid="{{item.cachetKindid}}">
+                        <image src="/static/pic/inforUpdate.png" class="cachetRightpic" style="">
+                        </image>
+                     </view>
+                   
+                  </view>
+                  <view class="delete_btn "style="height:{{cachetHeight}}px;width:{{delWidth}}px" 
+                      bindtap="delete" data-cachetKindid="{{item.cachetKindid}}" >删除
+                  </view>
+               </view>
+              </view>
+            </movable-view>
+          </movable-area>
+        </view>
+      </block>
+   </scroll-view>
+ 
+ </view>
+
+</view>

@@ -1,0 +1,31 @@
+<!--pages/maker/makerMy/makerMy.wxml-->
+<van-tabbar active="{{ active }}" bind:change="onChange" 
+ active-color="#38c172"
+  inactive-color="#bfbfbf">
+    <van-tabbar-item >
+      <image
+        slot="icon"
+        src="/static/pic/homedark.png"
+        mode="aspectFit"
+      />
+      <image
+        slot="icon-active"
+        src="/static/pic/homelight.png"
+        mode="aspectFit"
+      />
+      首页
+    </van-tabbar-item>
+      <van-tabbar-item >
+         <image
+        slot="icon"
+        src="/static/pic/mydark.png"
+        mode="aspectFit"
+      />
+      <image
+        slot="icon-active"
+        src="/static/pic/mylight.png"
+        mode="aspectFit"
+      />
+      我的
+    </van-tabbar-item>
+</van-tabbar>

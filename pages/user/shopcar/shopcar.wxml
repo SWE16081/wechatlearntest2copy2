@@ -1,0 +1,88 @@
+<!--pages/user/shopcar/shopcar.wxml-->
+<scroll-view class="main"  scroll-x="false" scroll-y="true"  style="height:{{mainheight}}px;width:{{Width}}px" >
+  <view class="shopcarContent">
+   <block wx:for="{{shopcarData}}" wx:key="{{index}}">
+      <view class="shoplistmargin">
+      <view class="shopcarlist">
+        <view class="cachetkind" style="height:{{kindheight}}px">
+          <view class="listcheckbox" bindtap="kindchooseChange" data-fatherindex="{{index}}" >
+            <image wx:if="{{item.kindchoosed}}" class="choosepic" src="/static/pic/afchoose.png"></image>
+            <image wx:else class="choosepic" src="/static/pic/bechoose.png"></image>
+          </view>
+          <view class="cachetkindtext">{{item.cakindname}}</view>
+        </view>
+        <block wx:for="{{item.cachet}}"wx:for-index="caindex"  wx:for-item="itemName"wx:key="{{itemName.cachetid}}">
+             <view class="cachetcontent">
+          <movable-area class="cachetarea"style="height:{{cachetHeight}}px;width:{{movableareaWdith}}px">
+            <movable-view class="cachetview" style="height:{{cachetHeight}}px;width:{{movableViewWidth}}px"
+             x="{{itemName.x}}" damping="100" 
+            direction="horizontal"  animation="false"  bindchange="handleMovableChange" data-index="{{caindex}}"
+            data-fatherindex="{{index}}"
+            capture-bind:touchstart="handleTouchestart" capture-bind:touchend="handleTouchend">
+              <view class="test">   
+                <view class="cachet" style="height:{{cachetHeight}}px;width:{{movableareaWdith}}px">
+                  <view class="cachetleft"  bindtap="cachetchooseChange"
+                   data-caindex="{{caindex}}" data-fatherindex="{{index}}">          
+                    <image wx:if="{{itemName.checkboxchoose}}" class="choosepic" src="/static/pic/afchoose.png"></image>
+                    <image wx:else class="choosepic" src="/static/pic/bechoose.png"></image>
+                  </view>
+                  <view class="cachetmiddle">
+                            <image class="cachetmiddlepic"  style="height:{{picHeight}}px;width:{{picHeight}}px" 
+                      src="{{WEB}}/{{itemName.picpath}}"></image>
+                  </view>
+                  <view class="cachetright">
+                      <view class="cachetexplain">公章详情解释</view>
+                      <view class="cachetchoosed">{{itemName.cachetname}}{{itemName.cachetsize}}{{itemName.cachetcolor}}</view>
+                      <view class="cachetpricenum">
+                        <view class="cachetprice">￥{{itemName.price}}</view>
+                        <view class="cachetnum">
+                          <view class="cachetnumleft"></view>
+                          <view class="cachetnummiddle">
+                            <button class="numchange" bindtap="minusNum" 
+                            data-caindex="{{caindex}}" data-fatherindex="{{index}}">-</button>
+                            {{itemName.number}}
+                            <button class="numchange" bindtap="addNum"
+                             data-caindex="{{caindex}}" data-fatherindex="{{index}}">+</button>
+                          </view>
+                          <view vclass="cachetnumright"></view>
+                          
+                        </view>
+                      </view>
+                  </view>
+                </view>        
+                  <view class="delete_btn "style="height:{{cachetHeight}}px;width:{{delWidth}}px" 
+                       bindtap="delcachet" data-shopcarid="{{itemName.shopcarid}}" 
+                        data-caindex="{{caindex}}" data-fatherindex="{{index}}">删除
+                  </view>
+              </view>
+              </movable-view>
+          </movable-area>
+        </view>
+        </block>
+     </view>
+    </view>
+   </block>
+  </view >
+</scroll-view>
+
+
+  <view class="shopcarfoot">
+     <view class="footleft">
+     <view class="leftblank"></view>
+       <view class="allchooseradio" bindtap="allchoose">
+            <image wx:if="{{allchoose}}" class="choosepic" src="/static/pic/afchoose.png"></image>
+            <image wx:else class="choosepic" src="/static/pic/bechoose.png"></image>
+       </view>
+       <view class="allchoosetext">
+          全选
+       </view>
+     </view>
+     <view class="footmiddle">
+        <view class="footmiddleblank"bindtap="alldel">删除</view>
+        <text class="middletext">合计：<text class="middleprice">￥{{allprice}}</text></text>
+     </view>
+     <view class="footright">
+       <button class="countbtn" bindtap="countMoney" size="minu">结算</button>
+     </view>
+  </view>
+

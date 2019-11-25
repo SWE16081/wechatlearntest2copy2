@@ -1,0 +1,31 @@
+<!--pages/user/addresslist/addresslist.wxml-->
+<scroll-view class="main" scroll-x="false" scroll-y="true" style="height:{{mainheight}}px;width:{{Width}}px">
+  <block wx:for="{{address}}" wx:key="{{index}}">
+      <view class="informationmagin" style="height:{{informationHeight}}px;">
+      <view class="information" bindtap="inforUpdate">
+        <view class="inforleft">
+          <view class="informationup">
+              <view class="name">{{item.name}}</view>
+              <view class="phone">{{item.phone}}</view>
+          </view>
+          <view class="informationdown">
+            <view class="address">
+            <text class="addtext" wx:if="{{item.checked}}">默认</text>
+              {{item.city}}{{item.address}}
+            </view>
+          </view>
+        </view>
+        <view class="inforright" bindtap="updateAddress" data-addressid="{{item.addressid}}">
+           <image src="/static/pic/inforUpdate.png" style="height:{{inforUpdateHeight}}px;width:{{inforUpdateHeight}}px"></image>
+        
+        </view>
+      </view>
+   </view>
+   </block>
+  
+
+</scroll-view>
+
+<view class="inforfoot" style="height:{{inforfootHeight}}px"> 
+   <button class="footbtn" bindtap="addAddress">添加收件人</button>
+</view>

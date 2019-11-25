@@ -1,0 +1,19 @@
+<!--pages/navigate/navigate.wxml-->
+<view class="main">
+  <view class="user">
+  <!-- <button type="primary" class="userbutton" plain="true" open-type="getUserInfo" bindgetuserinfo="onGotUserInfo">
+  制作公章
+  </button> -->
+    <button type="primary" class="userbutton" plain="true"bindtap="userlogin">
+  制作公章
+  </button>
+  </view>
+  <view class="maker">
+  <button type="warn" class="makerbutton" plain="true"
+  bindtap="makerLogin">商家登录</button>
+  </view>
+</view>
+<view class="foot">
+ <text class="makerregister" bindtap="makerRgister">商家注册</text>
+</view>
+

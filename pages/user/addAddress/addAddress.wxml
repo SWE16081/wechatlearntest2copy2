@@ -1,0 +1,51 @@
+<view class="up">
+  <van-cell-group>
+  <van-field
+    value="{{}}"
+    placeholder="姓名"
+    label="收件人"
+    right-icon="contact"
+    bind:blur="nameChange"
+  />
+  <van-field
+    value=""
+    label="手机号"
+    type="number"
+    placeholder="请输入手机号"
+    error-message="{{phoneWarning}}"
+    bind:blur="phoneChange"
+  />
+    <van-cell title="{{cityinfor}}" is-link bind:click="showPopup" />
+    <van-popup 
+        show="{{ show }}" 
+        round
+        bind:close="onClose" 
+        position="bottom">
+        <van-area
+         area-list="{{ areaList }}"
+         cancel-button-text="取消"
+         bind:cancel="cityCancel"
+         visible-item-count="7"
+          bind:confirm="cityConfirm"
+        />
+    </van-popup>
+    <van-field
+    value=""
+    placeholder="详细地址：如道路、门牌号、小区、楼栋号、单元室等"
+    bind:blur="addressChange"
+  />
+  <view class="choose">
+    <view class="chooseright">
+       设为默认地址
+    </view>
+    <view class="chooseleft">
+      <van-switch checked="{{ checked }}" bind:change="onChange" size="30px"  />
+    </view>
+  </view>
+
+</van-cell-group>
+</view>
+<van-toast id="van-toast" type="fail" duration="100" />
+<view class="down">
+  <van-button type="danger" size="large" bind:click="submit">确认</van-button>
+</view>

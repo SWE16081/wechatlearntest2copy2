@@ -1,0 +1,25 @@
+/* pages/maker/cachetkindupdate/cachetkindupdate.wxss */
+.main{
+  margin-left: 10px;
+  margin-right: 10px;
+  width: 96%;
+  height: 100%;
+  margin-top: 250rpx;
+  border-radius:15px;
+  box-shadow: 4px 4px 10px #bdb7b7;
+  border:1px solid #bdb7b7;
+}
+.content{
+   margin-top:20px;
+}
+.foot{
+  width: 96%;
+  margin-left: 2%;
+  margin-right: 2%;
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+.submitbtn{
+  background: #38c172;
+  color:#fff;
+}

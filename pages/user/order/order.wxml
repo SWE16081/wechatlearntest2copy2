@@ -1,0 +1,237 @@
+<!--pages/user/order/order.wxml-->
+<view class="background:#bfbfbf36">
+<van-tabs active="{{ index }}" swipe-threshold="6" bind:click="onClick">
+  <van-tab title="全部" >
+  <block  wx:for="{{orderData}}" wx:key="{{index}}" >
+      <view class="titleListmar" > 
+       <view class="titleList"bindtap="orderdetail" data-orderid="{{item.orderid}}">
+         <view class="makerinfo"  style="height:{{kindheight}}px">
+           <view class="makerleft"><image src="/static/pic/shop.png" style="height:{{picHeight2}}px;width:{{picHeight2}}px"
+           ></image>{{orderMaker}}</view>
+           <view class="makerright">{{item.orderState}}</view>
+         </view>
+         <block wx:for="{{item.order}}" wx:for-index="itemindex" wx:for-item="itemvalue" wx:key="{{itemindex}}">
+          <view class="orderinfo" style="height:{{cachetHeight}}px">
+           <view class="orderLeft"><image src="{{WEB}}/{{itemvalue.picpath}}" class="makerpic"
+           style="height:{{picHeight}}px;width:{{picHeight}}px" ></image></view>
+           <view class="orderMiddle">
+             <view class="Middleup">{{itemvalue.cachetexplain}}</view>
+             <view class="Middledown">{{itemvalue.cachetname}}{{itemvalue.cachetsize}}{{itemvalue.cachetcolor}}</view>
+           </view>
+           <view class="orderRight">
+            <view class="MiddleLeft">
+              <view class="rightUp">￥<text class="price">{{itemvalue.price[0]}}</text>.{{itemvalue.price[1]}}</view>
+              <view class="rightDown">x{{itemvalue.number}}</view>
+            </view>
+           </view>
+          </view>
+         </block>
+         <view class="otherinfo">
+           <view class="otherup" style="height:{{kindheight}}px">
+             共{{item.allnumber}}件商品 合计：￥<text class="price">{{item.allprice}}</text>
+           </view>
+           <view class="otherdown" style="height:{{kindheight}}px">
+            <button wx:if="{{item.state==0}}" class="otherdownbtn" bindtap="delete" 
+            data-orderid="{{item.orderid}}">删除</button>
+            <button wx:if="{{item.state==1}}" class="otherdownbtn" data-orderid="{{item.orderid}}"
+             bindtap="payfor">支付</button>
+            <button wx:if="{{item.state==2}}" class="otherdownbtn" data-orderid="{{item.orderid}}"
+             bindtap="remind" >提醒发货</button>
+            <button wx:if="{{item.state==3}}" class="otherdownbtn"  data-orderid="{{item.orderid}}"
+            bindtap="confirm">确认收货</button>
+            <button wx:if="{{item.state==4}}" class="otherdownbtn"  data-orderid="{{item.orderid}}"
+            bindtap="comment">评价</button>
+           </view>
+         </view>
+     </view>
+   </view>
+  </block>
+
+  </van-tab>
+  <van-tab title="代付款">
+    <block  wx:for="{{orderData}}" wx:key="{{index}}" >
+      <view class="titleListmar">
+       <view class="titleList"bindtap="orderdetail" data-orderid="{{item.orderid}}" >
+         <view class="makerinfo"  style="height:{{kindheight}}px">
+           <view class="makerleft"><image src="/static/pic/shop.png" style="height:{{picHeight2}}px;width:{{picHeight2}}px"
+           ></image>{{orderMaker}}</view>
+           <view class="makerright">{{item.orderState}}</view>
+         </view>
+         <block wx:for="{{item.order}}" wx:for-index="itemindex" wx:for-item="itemvalue" wx:key="{{itemindex}}">
+          <view class="orderinfo" style="height:{{cachetHeight}}px">
+           <view class="orderLeft"><image src="{{WEB}}/{{itemvalue.picpath}}" class="makerpic"
+           style="height:{{picHeight}}px;width:{{picHeight}}px" ></image></view>
+           <view class="orderMiddle">
+             <view class="Middleup">{{itemvalue.cachetexplain}}</view>
+             <view class="Middledown">{{itemvalue.cachetname}}{{itemvalue.cachetsize}}{{itemvalue.cachetcolor}}</view>
+           </view>
+           <view class="orderRight">
+            <view class="MiddleLeft">
+              <view class="rightUp">￥<text class="price">{{itemvalue.price[0]}}</text>.{{itemvalue.price[1]}}</view>
+              <view class="rightDown">x{{itemvalue.number}}</view>
+            </view>
+           </view>
+          </view>
+         </block>
+         <view class="otherinfo">
+           <view class="otherup" style="height:{{kindheight}}px">
+             共{{item.allnumber}}件商品 合计：￥<text class="price">{{item.allprice}}</text>
+           </view>
+           <view class="otherdown" style="height:{{kindheight}}px">
+            <button wx:if="{{item.state==0}}" class="otherdownbtn" bindtap="delete" 
+            data-orderid="{{item.orderid}}">删除</button>
+            <button wx:if="{{item.state==1}}" class="otherdownbtn" data-orderid="{{item.orderid}}"
+             bindtap="payfor">支付</button>
+            <button wx:if="{{item.state==2}}" class="otherdownbtn" data-orderid="{{item.orderid}}"
+             bindtap="remind" >提醒发货</button>
+            <button wx:if="{{item.state==3}}" class="otherdownbtn"  data-orderid="{{item.orderid}}"
+            bindtap="confirm">确认收货</button>
+            <button wx:if="{{item.state==4}}" class="otherdownbtn"  data-orderid="{{item.orderid}}"
+            bindtap="comment">评价</button>
+           </view>
+         </view>
+     </view>
+   </view>
+  </block>
+  </van-tab>
+  
+  <van-tab title="代发货">
+     <block  wx:for="{{orderData}}" wx:key="{{index}}" >
+      <view class="titleListmar">
+       <view class="titleList" bindtap="orderdetail" data-orderid="{{item.orderid}}">
+         <view class="makerinfo"  style="height:{{kindheight}}px">
+           <view class="makerleft"><image src="/static/pic/shop.png" style="height:{{picHeight2}}px;width:{{picHeight2}}px"
+           ></image>{{orderMaker}}</view>
+           <view class="makerright">{{item.orderState}}</view>
+         </view>
+         <block wx:for="{{item.order}}" wx:for-index="itemindex" wx:for-item="itemvalue" wx:key="{{itemindex}}">
+          <view class="orderinfo" style="height:{{cachetHeight}}px">
+           <view class="orderLeft"><image src="{{WEB}}/{{itemvalue.picpath}}" class="makerpic"
+           style="height:{{picHeight}}px;width:{{picHeight}}px" ></image></view>
+           <view class="orderMiddle">
+             <view class="Middleup">{{itemvalue.cachetexplain}}</view>
+             <view class="Middledown">{{itemvalue.cachetname}}{{itemvalue.cachetsize}}{{itemvalue.cachetcolor}}</view>
+           </view>
+           <view class="orderRight">
+            <view class="MiddleLeft">
+              <view class="rightUp">￥<text class="price">{{itemvalue.price[0]}}</text>.{{itemvalue.price[1]}}</view>
+              <view class="rightDown">x{{itemvalue.number}}</view>
+            </view>
+           </view>
+          </view>
+         </block>
+         <view class="otherinfo">
+           <view class="otherup" style="height:{{kindheight}}px">
+             共{{item.allnumber}}件商品 合计：￥<text class="price">{{item.allprice}}</text>
+           </view>
+           <view class="otherdown" style="height:{{kindheight}}px">
+            <button wx:if="{{item.state==0}}" class="otherdownbtn" bindtap="delete" 
+            data-orderid="{{item.orderid}}">删除</button>
+            <button wx:if="{{item.state==1}}" class="otherdownbtn" data-orderid="{{item.orderid}}"
+             bindtap="payfor">支付</button>
+            <button wx:if="{{item.state==2}}" class="otherdownbtn" data-orderid="{{item.orderid}}"
+             bindtap="remind" >提醒发货</button>
+            <button wx:if="{{item.state==3}}" class="otherdownbtn"  data-orderid="{{item.orderid}}"
+            bindtap="confirm">确认收货</button>
+            <button wx:if="{{item.state==4}}" class="otherdownbtn"  data-orderid="{{item.orderid}}"
+            bindtap="comment">评价</button>
+           </view>
+         </view>
+     </view>
+   </view>
+  </block>
+  </van-tab>
+  <van-tab title="待收货">
+      <block  wx:for="{{orderData}}" wx:key="{{index}}" >
+      <view class="titleListmar">
+       <view class="titleList" bindtap="orderdetail" data-orderid="{{item.orderid}}">
+         <view class="makerinfo"  style="height:{{kindheight}}px">
+           <view class="makerleft"><image src="/static/pic/shop.png" style="height:{{picHeight2}}px;width:{{picHeight2}}px"
+           ></image>{{orderMaker}}</view>
+           <view class="makerright">{{item.orderState}}</view>
+         </view>
+         <block wx:for="{{item.order}}" wx:for-index="itemindex" wx:for-item="itemvalue" wx:key="{{itemindex}}">
+          <view class="orderinfo" style="height:{{cachetHeight}}px">
+           <view class="orderLeft"><image src="{{WEB}}/{{itemvalue.picpath}}" class="makerpic"
+           style="height:{{picHeight}}px;width:{{picHeight}}px" ></image></view>
+           <view class="orderMiddle">
+             <view class="Middleup">{{itemvalue.cachetexplain}}</view>
+             <view class="Middledown">{{itemvalue.cachetname}}{{itemvalue.cachetsize}}{{itemvalue.cachetcolor}}</view>
+           </view>
+           <view class="orderRight">
+            <view class="MiddleLeft">
+              <view class="rightUp">￥<text class="price">{{itemvalue.price[0]}}</text>.{{itemvalue.price[1]}}</view>
+              <view class="rightDown">x{{itemvalue.number}}</view>
+            </view>
+           </view>
+          </view>
+         </block>
+         <view class="otherinfo">
+           <view class="otherup" style="height:{{kindheight}}px">
+             共{{item.allnumber}}件商品 合计：￥<text class="price">{{item.allprice}}</text>
+           </view>
+           <view class="otherdown" style="height:{{kindheight}}px">
+            <button wx:if="{{item.state==0}}" class="otherdownbtn" bindtap="delete" 
+            data-orderid="{{item.orderid}}">删除</button>
+            <button wx:if="{{item.state==1}}" class="otherdownbtn" data-orderid="{{item.orderid}}"
+             bindtap="payfor">支付</button>
+            <button wx:if="{{item.state==2}}" class="otherdownbtn" data-orderid="{{item.orderid}}"
+             bindtap="remind" >提醒发货</button>
+            <button wx:if="{{item.state==3}}" class="otherdownbtn"  data-orderid="{{item.orderid}}"
+            bindtap="confirm">确认收货</button>
+            <button wx:if="{{item.state==4}}" class="otherdownbtn"  data-orderid="{{item.orderid}}"
+            bindtap="comment">评价</button>
+           </view>
+         </view>
+     </view>
+   </view>
+  </block>
+  </van-tab>
+  <van-tab title="评价">
+       <block  wx:for="{{orderData}}" wx:key="{{index}}" >
+      <view class="titleListmar">
+       <view class="titleList" bindtap="orderdetail" data-orderid="{{item.orderid}}">
+         <view class="makerinfo"  style="height:{{kindheight}}px">
+           <view class="makerleft"><image src="/static/pic/shop.png" style="height:{{picHeight2}}px;width:{{picHeight2}}px"
+           ></image>{{orderMaker}}</view>
+           <view class="makerright">{{item.orderState}}</view>
+         </view>
+         <block wx:for="{{item.order}}" wx:for-index="itemindex" wx:for-item="itemvalue" wx:key="{{itemindex}}">
+          <view class="orderinfo" style="height:{{cachetHeight}}px">
+           <view class="orderLeft"><image src="{{WEB}}/{{itemvalue.picpath}}" class="makerpic"
+           style="height:{{picHeight}}px;width:{{picHeight}}px" ></image></view>
+           <view class="orderMiddle">
+             <view class="Middleup">{{itemvalue.cachetexplain}}</view>
+             <view class="Middledown">{{itemvalue.cachetname}}{{itemvalue.cachetsize}}{{itemvalue.cachetcolor}}</view>
+           </view>
+           <view class="orderRight">
+            <view class="MiddleLeft">
+              <view class="rightUp">￥<text class="price">{{itemvalue.price[0]}}</text>.{{itemvalue.price[1]}}</view>
+              <view class="rightDown">x{{itemvalue.number}}</view>
+            </view>
+           </view>
+          </view>
+         </block>
+         <view class="otherinfo">
+           <view class="otherup" style="height:{{kindheight}}px">
+             共{{item.allnumber}}件商品 合计：￥<text class="price">{{item.allprice}}</text>
+           </view>
+           <view class="otherdown" style="height:{{kindheight}}px">
+            <button wx:if="{{item.state==0}}" class="otherdownbtn" bindtap="delete" 
+            data-orderid="{{item.orderid}}">删除</button>
+            <button wx:if="{{item.state==1}}" class="otherdownbtn" data-orderid="{{item.orderid}}"
+             bindtap="payfor">支付</button>
+            <button wx:if="{{item.state==2}}" class="otherdownbtn" data-orderid="{{item.orderid}}"
+             bindtap="remind" >提醒发货</button>
+            <button wx:if="{{item.state==3}}" class="otherdownbtn"  data-orderid="{{item.orderid}}"
+            bindtap="confirm">确认收货</button>
+            <button wx:if="{{item.state==4}}" class="otherdownbtn"  data-orderid="{{item.orderid}}"
+            bindtap="comment">评价</button>
+           </view>
+         </view>
+     </view>
+   </view>
+  </block>
+  </van-tab>
+</van-tabs>
+</view>

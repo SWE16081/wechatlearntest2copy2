@@ -1,0 +1,592 @@
+/* pages/user/home/home.wxss */
+page{
+   background-color: #bfbfbf36;
+}
+.head{
+  display: flex;
+  flex-direction: row;
+  background-color: #ffffff;
+  /* overflow: hidden; */
+  
+}
+.content{
+   width: 100%;
+   /* view在另一个图层上显示 */
+     z-index: 1;
+     position: fixed;
+     margin-top:-18px;
+}
+.headswiper{
+  width: 100%;
+  height: 50%
+}
+.swiperpic{
+  width: 100%;
+  height: 100%;
+}
+.contentMar{
+  margin-left: 2%;
+  margin-right: 2%;
+  width: 96%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  
+
+  /* border:1px solid red; */
+}
+.information{
+  border-radius: 10px;
+  width: 100%;
+  background-color: #ffffff;
+  box-shadow: 4px 4px 10px #bdb7b7;
+}
+.informationMar{
+   margin-left: 2%;
+  margin-right: 2%;
+    margin-top: 2%;
+  margin-bottom:2%;
+  width: 96%;
+   height: 92%;
+   display: flex;
+  flex-direction: column;
+  /* border:1px solid red; */
+}
+.inforup{
+  height: 20%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+.infordown{
+ height: 70%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  font-family: "楷体";
+  letter-spacing: 4px;
+  /* border:1px solid red; */
+}
+.inforupLeft{
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  height: 100%;
+  width: 80%;
+    /* border:1px solid red; */
+  font-size: 18px;
+  font-family: "楷体";
+  letter-spacing: 1px;
+}
+.inforupRight{
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  height: 100%;
+  width: 20%;
+    /* border:1px solid red; */
+  font-size: 14px;
+  color:rgb(168, 164, 164);
+  letter-spacing: 1px;
+}
+.inforupRightpic{
+  height:20px;
+  width:20px;
+  /* border:1px solid red; */
+}
+.makecachet{
+  border-radius: 10px;
+  width: 100%;
+  margin-top: 20px;
+  background-color: #ffffff;
+  box-shadow: 4px 4px 10px #bdb7b7;
+  /* border:1px solid red; */
+}
+.makecachetMar{
+   margin-left: 2%;
+  margin-right: 2%;
+    margin-top: 2%;
+  margin-bottom:2%;
+  width: 96%;
+  height: 92%;
+  display: flex;
+  flex-direction: column;
+  /* border:1px solid red; */
+}
+.makeup{
+  width: 100%;
+  height: 10%;
+  /* border:1px solid red; */
+}
+.makedown{
+  width: 100%;
+  height: 90%;
+/* border:1px solid red; */
+/* float: left; */
+display: flex; 
+justify-content: center;
+align-items: center;
+}
+.makeswiper{
+  height: 100%;
+  width: 100%;
+}
+.makeswiperitem{
+/* display: flex;
+justify-content: center;
+align-items: center; */
+/* border:1px solid red; */
+  /* height: 100%;
+  width: 100%; */
+}
+.makedownbtn{
+   margin-left: 10px; 
+   margin-top: 10px; 
+    float: left;
+   /* text-align: center; */
+/* border:1px solid red; */
+width: 30%;
+height: 38%;
+}
+.btnview{
+  width: 100%;
+  height:80%;
+  /* background:linear-gradient(to right, #4bff81, #31e005); */
+    border:1px solid #38c172;
+  color:#38c172;
+  font-size:14px;
+display: flex; 
+justify-content: center;
+align-items: center;
+text-align: center;
+border-radius: 10px;
+}
+
+/* 修改swiper小圆点样式 */
+/* 设置点点的层级 ,可以调整小点的位置*/
+.makeswiper .wx-swiper-dots.wx-swiper-dots-horizontal {
+  position: absolute;
+  top: 90%;
+  /* left: 500rpx; */
+  /* z-index可设可不设*/
+  z-index: 999;
+}
+/* 设置点点的样式 */
+.makeswiper .wx-swiper-dot {
+  width: 35rpx;
+  height: 7rpx;
+  display: inline-flex;
+  /* 这里设置点点之间的距离 */
+  margin-left: 19rpx;
+  justify-content: space-between;
+}
+ 
+ /* 当前点点的样式 */
+.makeswiper .wx-swiper-dot::before {
+  content: '';
+  flex-grow: 1;
+  background: #b6afaf;
+}
+ 
+/* 当前点点的样式 */
+.makeswiper .wx-swiper-dot-active::before {
+  background: #38c172;
+}
+
+/*  */
+/* 模态框 */
+.mainmodel{
+  position: fixed;
+  
+  width: 100%;
+  background-color: gray;
+  top: 0;
+  left: 0;
+  opacity: 0.7;
+  z-index:1;
+}
+/* 公章制作弹出框 */
+.choosecont{
+   width: 96%;
+   position: fixed;
+   left: 0;
+   margin-left: 2%;
+   margin-right: 2%;
+   /* opacity: 0; */
+   /*  */
+   top:120px;
+   background-color: #ffffff;
+    z-index:1;
+    display: flex;
+    flex-direction: column;
+    border-radius:15px;
+    border: 1px solid #ffffff; 
+}
+/*底部弹出框布局头部*/
+.chooseconthead{
+  height: 22%;
+  width: 100%;
+  /* border: 1px solid rgb(0, 225, 255); */
+  display: flex;
+  flex-direction: row;
+}
+.choosecontpic{
+  /* border: 1px solid rgb(0, 225, 255); */
+  height: 90%;
+  width: 25%;
+  /* margin-left:8px; 
+  margin-top:8px;  */
+  margin-left:2%; 
+  margin-top:2%; 
+}
+.chooseconinfo{
+  /* border: 1px solid rgb(0, 225, 255); */
+ height: 100%;
+  width: 68%;
+display: flex;
+flex-direction: column;
+margin-left: 8px;
+}
+.chooseconinfospace{
+   height: 65%;
+ width: 100%;
+ /* border: 1px solid red; */
+}
+.choosecontinfoprice{
+ height: 20%;
+ width: 100%;
+ /* border: 1px solid red; */
+ color:rgba(255, 51, 0, 0.87);
+ display: flex;
+ align-items: center;
+}
+.chooseconttext{
+height: 15%;
+ width: 100%;
+  /* border: 1px solid red; */
+ font-size: 12px;
+}
+.choosecontbackicon{
+  /* border: 1px solid rgb(0, 225, 255); */
+ height: 100%;
+  width: 10%;
+  display: flex;
+  justify-content: center;
+  /* margin-right: 8px; */
+}
+.choosecontpicimg{
+  height: 100%;
+  width: 100%;
+}
+.choosecontmiddleswiper{
+   height: 65%;
+  width: 100%;
+  /* border: 1px solid rgb(0, 255, 13); */
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+.choosecontmiddle{
+  height: 100%;
+  /* border: 1px solid red; */
+  margin-left: 2%;
+  margin-right: 2%;
+  display: flex;
+  flex-direction: column
+}
+.kindtext,.sizetext,.colortext{
+  width: 100%;
+  height: 10%;
+  display: flex;
+  align-items: center;
+  font-size: 13px;
+  margin-top: 2%; 
+}
+.kindtext{
+  margin-top:10%;
+
+}
+.kindcont,.sizecont,.colorcont{
+  margin-top: 4%;
+  width: 100%;
+float: left;
+    border-bottom:1px solid rgba(236, 232, 232, 0.884);
+}
+.kindbtn,.sizebtn,.colorbtn{
+  margin-left: 3%; 
+    float: left;
+}
+.choosecontmiddlenum{
+margin-top: 8%;
+  height: 30%;
+  width: 100%;
+  /* border: 1px solid rgb(0, 255, 34); */
+  display: flex;
+  flex-direction: row;
+}
+.numleft{
+    height: 100%;
+  width: 70%;
+  /* border:1px solid red; */
+  display: flex;
+  align-items:center;
+  font-size: 13px;
+}
+.numright{
+      height: 100%;
+  width: 30%;
+  /* border:1px solid red; */
+  display: flex;
+  align-items:center;
+}
+.choosecontfootmargin{
+  /* 弹出框高度的13% */
+  height: 13%;
+  width: 100%;
+  /* border: 1px solid red; */
+}
+.choosecontfoot{
+  margin-left: 2%;
+  margin-right:2%;
+   /* border: 1px solid red; */
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+}
+.chcontfoshopcar{
+  width: 100%;
+  height: 100%;
+    display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.chcontfoshopcarbtn{
+  width: 100%;
+  height: 70%;
+  font-size: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px;
+  border-radius: 15px;
+  background-color: #38c172;
+  color:#ffffff;
+}
+.chcontfobuybtn{
+    background-color: #f1c917;
+  color:#ffffff;
+}
+.backpic{
+  position: fixed;
+   width: 20px;
+  height: 20px; 
+  margin-top:6px;
+}
+
+.shopcarBar{
+  position: fixed;
+  left: 0px;
+  bottom: 0px;
+  /* z-index:2; */
+height: 60px;
+width:100%;
+background: #ffffff;
+box-shadow: -3px -1px 15px #bdb7b7;
+/* background-image: linear-gradient(to right rgba(213, 214, 207, 0.87) ,red); */
+display: flex;
+flex-direction: row;
+  /* border:1px solid red; */
+}
+.shopcarBarLeft{
+  height: 100%;
+  width: 20%;
+  /* border:1px solid red; */
+
+}
+.shopcarBarMiddle{
+  height: 100%;
+  width: 55%;
+   /* border:1px solid red; */
+    display: flex;
+  align-items: center;
+  justify-content:flex-end;
+  margin-right: 10px;
+}
+.shopcarBarRight{
+  height: 100%;
+  width: 25%;
+  /* border:1px solid red; */
+  display: flex;
+  align-items: center;
+  justify-content:center;
+}
+.shopcarPic{
+  height: 60px;
+  width: 60px;
+  margin-left:10px;
+  margin-top: -15px;
+
+}
+.infornum{
+    width:20px;
+    height:20px;
+    /* line-height:20px; */
+        display: flex;
+  align-items: center;
+  justify-content:center;
+    font-size:10px;
+    color:#38c172;
+    /* text-align:center; */
+    background-color:#ffffff;
+    border-radius:50%;
+    position:absolute;
+    left:50px;
+    top:-22px;
+}
+.makeOrder{
+  height: 60%;
+  width: 80%;
+  font-size:14px;
+  background:#38c172;
+  color:#ffffff;
+    display: flex;
+  align-items: center;
+  justify-content:center;
+}
+/* 模态框 */
+.mainmodel2{
+  position: fixed;
+  width: 100%;
+  background-color: gray;
+  top: 0;
+  left: 0;
+  opacity: 0.7;
+  z-index:1;
+}
+/* 购物车底部弹出框 */
+.shopcarModel{
+  width:100%;
+  /* height: 100px; */
+  position: fixed;
+  left:0px;
+  
+    background: #ffffff;
+  z-index: 1;
+}
+.shopcarModelUp{
+  width: 100%;
+  height: 10%;
+  display: flex;
+  flex-direction:row;
+  /* background: #ffffff; */
+}
+.shopcarModelDown{
+  width: 100%;
+  height: 89%;
+
+}
+.upleft{
+  width: 80%;
+  height: 100%;
+}
+.upright{
+  width: 20%;
+  height: 100%;
+    /* border:1px solid red; */
+    display: flex;
+    align-items:center;
+    justify-content:center;
+    font-size:12px;
+    color:#A8A4A4;
+}
+.shopcarModelUppic{
+    width:40rpx;
+  height: 40rpx;
+}
+.shoplistMargin
+{
+  margin-top:3%;
+  height: 40%;
+  width: 100%;
+    display:flex;
+    flex-direction:row
+    
+}
+.shoplist{
+  height: 100%;
+  width: 96%;
+  margin-left: 2%;
+  margin-right: 2%;
+   border-radius: 10px;
+    display:flex;
+    flex-direction:row;
+   border-bottom:3px solid #eeecec;
+   border-right:3px solid #eeecec;
+   box-shadow: 2px 2px 10px #eeecec;
+}
+.shoplistLeft{
+  height: 100%;
+  width: 30%;
+     /* border:1px solid red; */
+}
+.shoplistMiddle{
+  height: 100%;
+  width: 40%;
+     /* border:1px solid red; */
+     display: flex;
+     flex-direction: column;
+     font-size: 13px;
+     color:#A8A4A4;
+}
+.shoplistRight{
+  height: 100%;
+  width: 30%;
+     /* border:1px solid red; */
+}
+.shoplistLeft{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.shoplistpic{
+ border-radius: 2px;
+}
+.middleexplain{
+width: 100%;
+height: 40%;
+display: flex;
+align-items: center;
+/* border:1px solid red; */
+}
+.middlechoose{
+width: 100%;
+height: 20%;
+display: flex;
+align-items: center;
+/* border:1px solid red; */
+}
+.middleprice{
+width: 100%;
+height: 40%;
+display: flex;
+align-items: center;
+/* border:1px solid red; */
+ font-size: 15px;
+     color:rgba(255, 51, 0, 0.87);
+}
+.shoplistRight{
+  display: flex;
+  justify-content:center;
+  align-items: center;
+}
+.shopcarBtn{
+  background: #38c172;
+  color: #ffffff;
+  font-size: 15px;
+  border-radius: 50%;
+    display: flex;
+  justify-content:center;
+  align-items: center;
+  height: 55rpx;
+  width: 55rpx;
+}

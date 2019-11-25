@@ -1,0 +1,10 @@
+{
+  "usingComponents": {
+  "mp-slideview": "/component/slideview/slideview",
+  "mp-cells": "/component/cells/cells",
+  "mp-cell": "/component/cell/cell"
+
+  },
+  "navigationBarTitleText": "购物车",
+  "navigationStyle":"default"
+}

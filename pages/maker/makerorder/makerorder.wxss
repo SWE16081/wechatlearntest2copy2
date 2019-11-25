@@ -1,0 +1,133 @@
+/* pages/maker/makerorder/makerorder.wxss */
+page{
+ background-color:#bfbfbf36; 
+}
+.titleListmar{
+  width:100%;
+  overflow: hidden;
+}
+.titleList{
+  /* width: 100%; */
+  margin-top:20px;
+  margin-left: 8px;
+  margin-right: 8px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+}
+.makerinfo{
+  /* border:1px solid red; */
+    display: flex;
+  flex-direction: row;
+  font-size:17px;
+  letter-spacing:1px;
+  margin-right: 8px;
+  margin-left:8px;
+}
+.orderinfo{
+  /* width: 100px; */
+  margin-top: 4px;
+  margin-right: 8px;
+  margin-left:8px;
+  display: flex;
+  flex-direction: row;
+   align-items: center;
+  justify-content: center;
+}
+.makerleft{
+  /* border:1px solid red; */
+  height:100%;
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start
+}
+.makerright{
+  /* border:1px solid red; */
+    height:100%;
+  width: 50%;
+    display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  color:rgba(255, 51, 0, 0.87);
+}
+.orderLeft{
+ display: flex;
+  /* align-items: center; */
+  height: 100%;
+  width: 30%;
+  /* border:1px solid red; */
+}
+.orderMiddle{
+  height: 100%;
+  width: 50%;
+  /* border:1px solid red; */
+   display: flex;
+  flex-direction: column;
+  letter-spacing: 1px;
+  font-size: 14px;
+}
+.orderRight{
+  display: flex;
+  flex-direction: column;
+  letter-spacing: 1px;
+  font-size: 13px;
+  height: 100%;
+  width: 20%;
+  /* border:1px solid red; */
+}
+.makerpic{
+  border-radius: 2px;
+
+}
+.rightUp{
+  font-size:14px;
+   display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.rightDown{
+  font-size:14px;
+   display: flex;
+  justify-content: flex-end;
+  color:#635d5da2;
+}
+.otherinfo{
+  display: flex;
+  flex-direction: column;
+  margin-right: 8px;
+  margin-left:8px;
+}
+.otherup{
+  width: 100%;
+}
+.otherup{
+  display:flex;
+  align-items: center;
+  justify-content: flex-end;
+  font-size: 14px;
+}
+.price{
+  font-size: 17px;
+}
+.otherdown{
+    display:flex;
+  align-items: center;
+  justify-content: flex-end;
+  height: 40px;
+  /* border:1px solid red; */
+}
+.otherdownbtn{
+  height: 25px;
+  /* width: 50px; */
+  font-size: 13px;
+  background-color: #ffffff;
+  color:rgba(255, 51, 0, 0.87);
+  border:1px solid rgba(255, 51, 0, 0.87);
+  border-radius: 10px;
+   display:flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 2px;
+}

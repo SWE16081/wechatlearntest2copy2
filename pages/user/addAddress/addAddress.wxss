@@ -1,0 +1,38 @@
+/* pages/user/addAddress/addAddress.wxss */
+page{
+    /*background-color:#bfbfbf36;*/
+}
+.up{
+    margin-top:20px;
+}
+.down{
+    margin-top:50px;
+   
+}
+.choose{
+    height:44px;
+    width:100%;
+    display:flex;
+    flex-direction: row;
+    /* border:1px solid red; */
+}
+.chooseright{
+    height:100%;
+    width:80%;
+    display: flex;
+    align-items: center;
+      /* border:1px solid red; */
+      padding-left: 15px;
+    font-size: 14px;
+    line-height: 24px;
+
+
+}
+.chooseleft{
+ height:100%;
+    width:20%;
+      display: flex;
+    align-items: center;
+    justify-content:center;
+      /* border:1px solid red; */
+}

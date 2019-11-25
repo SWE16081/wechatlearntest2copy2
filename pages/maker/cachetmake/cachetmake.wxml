@@ -1,0 +1,78 @@
+<!--pages/maker/cachetmake/cachetmake.wxml-->
+<view class="main">
+  <view class="makeup">
+      <swiper class="makeswiper" indicator-dots="true"	indicator-active-color="#38c172" 
+      style="height:{{makecacheSwipertHeight}}px;">
+      <block wx:for="{{cachetkindData}}" wx:key="{{index}}">
+          <swiper-item>
+              <block wx:for="{{item}}" wx:for-item="itemname" wx:for-index="itemindex"wx:key="{{itemindex}}">
+                <view class="makedownbtn">
+                <span class="btnview" bindtap="swiperonclick" 
+                data-cachetkindid="{{itemname.cachetKindid}}">{{itemname.cakindname}}</span>
+                </view>
+              </block>
+          </swiper-item>
+      </block>
+      </swiper>
+  </view>
+
+  <view class="makedown">
+      <van-cell
+      is-link
+      title="添加公章"
+      link-type="navigateTo"
+      url="/pages/maker/cachetadd/cachetadd"
+    />
+   <scroll-view class="makeScroll" scroll-x="false" scroll-y="true" style="height:{{makeScrollHeight}}px;">
+     <block wx:for="{{cachetData}}" wx:key="{{index}}">
+         <view class="makeScroll-item">
+            <movable-area class="cachetarea"style="height:{{cachetHeight}}px;width:{{movableareaWdith}}px">
+              <movable-view class="cachetview" style="height:{{cachetHeight}}px;width:{{movableViewWidth}}px"
+                x="{{item.x}}" damping="100"  direction="horizontal"  animation="false"  
+                bindchange="handleMovableChange" data-index="{{index}}" 
+                capture-bind:touchstart="handleTouchestart" capture-bind:touchend="handleTouchend">
+              <view class="test">
+                 <view class="makeCachetList">
+                  <view class="makeCachetListMargin" style="height:{{cachetHeight}}px;width:{{movableareaWdith}}px"> 
+                       <view class="makeCachetListleft">
+                        <image class="makeListpic"src="{{WEB}}/{{item.cachetPicPath[0]}}" 
+                        style="height:{{picHeight}}px;width:{{picHeight}}px"> </image>
+                      </view> 
+                      <view class="makeCachetListMiddle">
+                        <view class="middleUp"><text decode="true">{{item.cachettagname}}</text></view>
+                        <view class="middleMiddle">
+                          尺寸：
+                          <block wx:for="{{item.cachetSize}}" wx:for-index="indexname" 
+                          wx:for-item="itemname" wx:key="{{indexname}}">
+                          <text decode="true">{{itemname.size}}&nbsp;</text>
+                          </block>
+                        </view>
+                        <view class="middleDown">
+                          颜色：
+                            <block wx:for="{{item.cachetColor}}" wx:for-index="indexname" 
+                            wx:for-item="itemname" wx:key="{{indexname}}">
+                              <text decode="true">{{itemname.color}}&nbsp;</text>
+                            </block>
+                        </view>
+                      </view>
+                      <view class="makeCachetListRight" bindtap="cachetupdate" data-cachetid="{{item.cachetid}}" >
+                      <image src="/static/pic/inforUpdate.png" class="cachetRightpic" style=""></image>
+                    </view> 
+                  </view>
+                   <view class="delete_btn "style="height:{{cachetHeight}}px;width:{{delWidth}}px" 
+                  bindtap="delcachet" data-cachetid="{{item.cachetid}}" 
+                  >删除
+                </view>
+                </view>
+           
+      
+              </view>
+
+               </movable-view>
+            </movable-area>
+         </view>
+   
+     </block>
+   </scroll-view>
+  </view>
+</view>

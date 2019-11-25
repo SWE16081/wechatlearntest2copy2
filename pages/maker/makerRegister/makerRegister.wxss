@@ -1,0 +1,11 @@
+/* pages/makerRegister/makerRegister.wxss */
+.section{
+  margin-top: 10px;
+}
+.formview{
+  margin-top:100px;
+  /* border: 1px solid #f01212; */
+}
+.input{
+border-bottom: 1px solid #bbacac38;
+}

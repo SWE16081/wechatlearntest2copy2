@@ -1,0 +1,84 @@
+<!--pages/user/orderdetail/orderdetail.wxml-->
+<view class="head">
+
+   <view class="headtitle">
+     <view class="headtitlemargin">
+         <image class="headpic" src="/static/pic/back.png" bindtap="backbefore"
+         ></image>
+         <text decode="true"bindtap="backbefore" class="headtext">&nbsp;{{orderinfo}}</text>
+
+     </view>
+   </view>
+</view>
+<view class="content">
+  <view class="contentmargin">
+    <view class="cachetlist">
+      <view class="cachetlistmargin">
+        <van-cell-group>
+          <van-cell  icon="shop-o" title="公章店铺" is-link value="查看详情"
+          bindtap="tocachetshop">
+            <van-icon
+              slot="right-icon"
+              name="search"
+              style="line-height: inherit;"
+            />
+         </van-cell>
+        </van-cell-group>
+        <view class="cacontent">
+          <block wx:for="{{orderdata.order}}" wx:key="{{index}}">
+            <view class="contentList" style="height:{{cachetHeight}}px">
+            
+            <view class="ListLeft">
+              <image src="{{WEB}}/{{item.picpath}}"class="makerpic"
+                style="height:{{picHeight}}px;width:{{picHeight}}px">
+                </image>
+            </view>
+              <view class="ListMiddle">
+                <view class="Middleup">{{item.cachetexplain}}</view>
+                <view class="Middledown">{{item.cachetname}}{{item.cachetsize}}{{item.cachetcolor}}</view>
+              </view>
+              <view class="ListRight">
+                <view class="RightContent">
+                  <view class="rightUp">￥<text class="price">{{item.price[0]}}</text>.{{item.pirce[1]}}</view>
+                  <view class="rightDown">x{{item.number}}</view>
+                </view>
+              </view>
+    
+            </view>
+          </block>
+          <view class="otherinfo">
+           <view class="otherup" style="height:{{kindheight}}px">
+             共{{allnumber}}件商品 合计：￥<text class="price">{{allprice}}</text>
+           </view>
+          </view>
+        </view>
+
+      </view>
+    </view>
+    <view class="orderinfo">
+      <view class="orderinfomargin">
+        
+         <van-cell-group>
+          <van-cell   title="订单详情" value="" size="17" />
+         </van-cell-group>
+
+          <view class="ordercontent">
+             <view class="contentleft">
+                收货地址
+             </view>
+             <view class="contentright">
+                <view class="address">{{orderdata.address}}</view>
+                <view class="phone">{{orderdata.name}}<text decode="true">&nbsp;{{oerderdata.phone}}</text></view>
+             </view>
+         </view>
+         <van-cell-group>
+          <van-cell   title="配送方式" value="{{orderdata.deliverway}}" />
+          <van-cell   title="支付方式" value="在线支付" />
+          
+          <van-cell   title="下单时间" value="{{orderdata.created_at}}" />
+        </van-cell-group>
+      
+      </view>
+    </view>  
+  </view>
+</view>

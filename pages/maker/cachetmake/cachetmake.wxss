@@ -1,0 +1,166 @@
+/* pages/maker/cachetmake/cachetmake.wxss */
+.main{
+  width:100%;
+}
+.makeup,.makedown{
+  margin-left:2%;
+  margin-right: 2%;
+  width: 96%;
+  margin-top:20px;
+  /* margin-bottom: 2%; */
+  border-radius:10px;
+  box-shadow: 4px 4px 10px #bdb7b7;
+  /* border:1px solid red; */
+}
+.makedownbtn{
+   margin-left: 10px; 
+   margin-top: 10px; 
+    float: left;
+width: 30%;
+height: 38%;
+}
+.btnview{
+  width: 100%;
+  height:80%;
+  /* background:linear-gradient(to right, #4bff81, #31e005); */
+    border:1px solid #38c172;
+  color:#38c172;
+  font-size:14px;
+display: flex; 
+justify-content: center;
+align-items: center;
+text-align: center;
+border-radius: 10px;
+}
+.makeswiper .wx-swiper-dots.wx-swiper-dots-horizontal {
+  position: absolute;
+  top: 90%;
+  /* left: 500rpx; */
+  /* z-index可设可不设*/
+  z-index: 999;
+}
+/* 设置点点的样式 */
+.makeswiper .wx-swiper-dot {
+  width: 35rpx;
+  height: 7rpx;
+  display: inline-flex;
+  /* 这里设置点点之间的距离 */
+  margin-left: 19rpx;
+  justify-content: space-between;
+}
+ 
+ /* 当前点点的样式 */
+.makeswiper .wx-swiper-dot::before {
+  content: '';
+  flex-grow: 1;
+  background: #b6afaf;
+}
+/* 当前点点的样式 */
+.makeswiper .wx-swiper-dot-active::before {
+  background: #38c172;
+}
+.makeScroll{
+  width:100%;
+}
+.makeScroll-item{
+    margin-left:8px;
+  margin-right:8px;
+     overflow: hidden;
+     margin-top: 4%;
+           box-shadow: 2px 2px 10px #bdb7b7;
+  border-radius: 10px;
+}
+/* //左滑删除 */
+.cachetarea{
+  display: flex;
+  flex-direction: row;
+    /* border: 1px solid greenyellow; */
+}
+.cachetview{
+  /* width: 420px; */
+  /* background-color: red; */
+  display: flex;
+  flex-direction: row;
+}
+
+.delete_btn {
+ background-color: red;
+  /* border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px; */
+  color: #fff;
+  font-size: 28rpx;
+  text-align: center;
+  line-height: 201rpx;
+}
+.test{
+        display: flex;
+    flex-direction: row;
+}
+.makeCachetList{
+ display: flex;
+ flex-direction: row;
+  /* border:1px solid red; */
+}
+
+.makeCachetListMargin{
+  margin-left:8px;
+    /* border:1px solid red; */
+    display: flex;
+    flex-direction: row;
+    /* background:red; */
+   
+}
+.makeCachetListleft{
+  height: 100%;
+  width: 30%;
+  /* border:1px solid red; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.makeCachetListMiddle{
+  height: 100%;
+  width: 60%;
+  /* border:1px solid red; */
+  display: flex;
+  flex-direction:column;
+  font-size:13px;
+  color:#bfbfbf;
+}
+.makeCachetListRight{
+  height: 100%;
+  width: 10%;
+  /* border:1px solid red; */
+  display: flex;
+ align-items: center;
+ justify-content: center;
+}
+.makeListpic{
+  border-radius:2px;
+}
+.middleUp{
+  width:100%;
+  height: 30%;
+ /* border:1px solid red; */
+ display: flex;
+ align-items: center;
+}
+.middleMiddle{
+  width:100%;
+  height: 40%;
+ /* border:1px solid red; */
+  display: flex;
+ align-items: center;
+}
+.middleDown{
+  width:100%;
+  height: 30%;
+ /* border:1px solid red; */
+  display: flex;
+ align-items: center;
+}
+.cachetRightpic{
+  height: 20px;
+  width: 20px;
+}
+

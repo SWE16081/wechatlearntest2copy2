@@ -1,0 +1,117 @@
+<!--pages/maker/cachetadd/cachetadd.wxml-->
+<view class="main">
+ <view class="mainMar">
+   <view class="head">
+    <van-cell title="{{cachetKindInfo}}" is-link bind:click="showPopup" />
+    <van-popup show="{{ show }}"     
+          round
+          bind:close="onClose" 
+          position="bottom">
+          <van-picker
+            columns="{{kindcolumns}}"
+              default-index="{{0}}"
+            bind:cancel="Cancel"
+            bind:confirm="Confirm"
+            show-toolbar
+            confirm-button-text="确认"
+            cancel-button-text="取消"
+            visible-item-count="4"
+            item-height="40"
+          />
+    </van-popup>
+    <van-cell-group>
+      <van-field
+        value="{{cachetData[0].cachettagname}}"
+        placeholder="公章名称"
+        bind:blur="cachetNameClick"
+      />
+
+      <van-cell title="添加价格尺寸">
+      <van-icon slot="right-icon" name="plus" class="custom-icon" bind:click="addcachetMian" />
+      </van-cell>
+    </van-cell-group>
+   </view>
+   
+    <view class="content">
+      <scroll-view  class="cachetscroll" scroll-x="false" 
+        scroll-y="true" style="height:{{cachetscrollHeight}}px">
+        <block wx:for="{{cachetaddList}}" wx:key="{{index}}">
+              <view class="cachetMian" style="height:{{cachetMianheight}}px;"  >
+              <view class="cachetMainMargin" >
+            
+                <van-cell-group >
+                    <van-field
+                      type="number"
+                      value="{{priceInput[index].price}}"
+                      placeholder="公章价格"
+                      bind:blur="cachetpriceClick"
+                      data-index="{{index}}"
+                    />
+                    <van-field
+                      value="{{sizeInput[index].size}}"
+                      placeholder="尺寸"
+                    bind:blur="cachetsizeClick"
+                      data-index="{{index}}"
+                    />
+               
+                </van-cell-group>
+
+            </view>
+            </view>
+        </block>
+      </scroll-view>
+    <van-cell-group>
+        <van-cell title="添加颜色">
+      <van-icon slot="right-icon" name="plus" class="custom-icon" bind:click="addcachetcolor" />
+      </van-cell>
+    </van-cell-group>
+      <scroll-view  class="cachetscroll" scroll-x="false" 
+        scroll-y="true" style="height:{{cachetscrollHeight2}}px">
+        <block wx:for="{{cachetColorList}}" wx:key="{{index}}">
+              <view class="cachetMian" style="height:{{cachetMianheight2}}px;"  >
+              <view class="cachetMainMargin" >
+                <van-field
+                  value="{{colorInput[index].color}}"
+                  placeholder="颜色"
+                  bind:blur="cachetcolorClick"
+                  data-index="{{index}}"
+                />  
+
+            </view>
+            </view>
+        </block>
+      </scroll-view>
+
+        <view class="picupload">
+          <view class="picuploadtext">
+              <text >上传图片</text>
+          </view>
+          <view class="picuploadimgview">
+              <image class="picuploadimg"src="/static/pic/picupload.png" bindtap="addpic"
+                data-index="{{index}}" style="">
+              </image>
+          </view>
+        </view>
+        <scroll-view class="picpreview"scroll-x="false"  scroll-y="true" style="height:{{cachetprivewHeight}}px">
+         <view class="scrollview">
+         <block wx:for="{{previewPicList}}" wx:key="{{index}}">
+              <view class="picevery" style="height:{{cachetprivewHeight}}px">
+                <!-- <view class="piceverypic">  -->
+                  <image class="previewPic"src="{{item}}"></image>
+                  <image class="deletePic" src="/static/pic/windowback.png" bindtap="delPrivewPic" data-index="{{index}}"></image>
+              </view>
+          </block>
+         </view>
+
+        </scroll-view>
+      <!-- </view> -->
+
+    </view>
+
+  <view class="foot"><button class="cachetsub" bindtap="affirm">确认</button></view>
+ </view>
+
+
+</view>
+  
+

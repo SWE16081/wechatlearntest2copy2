@@ -1,0 +1,104 @@
+<scroll-view class="main" scroll-x="false" scroll-y="true" style="height:{{mainheight}}px;width:{{Width}}px">
+   <view class="informationmagin" wx:if="{{addressflage}}"style="height:{{informationHeight}}px;">
+      <view class="information" bindtap="inforUpdate">
+        <view class="inforleft">
+          <view class="informationup">
+              <view class="name">{{shopcar.address.name}}</view>
+              <view class="phone">{{shopcar.address.phone}}</view>
+          </view>
+          <view class="informationdown">
+            <view class="address">{{shopcar.address.city}}{{shopcar.address.address}}</view>
+          </view>
+        </view>
+        <view class="inforright">
+           <image src="/static/pic/inforUpdate.png" style="height:{{inforUpdateHeight}}px;width:{{inforUpdateHeight}}px"></image>
+        </view>
+      </view>
+   </view>
+     <view  class="cachetinformagin">
+      <view class="cachetinfor">
+        <view class="cachetinforinner">
+        <block wx:for="{{shopcar.shopcar}}" wx:key="{{index}}">
+         <view class="cachetlist" style="height:{{cachetlistHeight}}px">
+            <view class="listleft">
+               <image src="{{WEB}}/{{item.picpath}}" style="height:{{picHeight}}px;width:{{picHeight}}px"></image>
+              </view>
+              <view class="listmiddle">
+                <view class="middleup">{{item.explain}}</view>
+                <view class="middledown">{{item.cachetname}}{{item.cachetsize}}{{item.cachetcolor}}</view>
+              </view>
+            <view class="listright">
+              <view class="rightprice">
+                <text class="pirceicon">￥</text><text class="price1">{{item.price}}</text>
+          
+              </view>
+              <view class="rightnum">
+               x{{item.number}}
+              </view>
+            </view>
+         </view>
+        </block>
+        <view class="otherinfor">
+        <van-cell-group>
+        <van-cell title="公章证明材料图片上传"  is-link bindtap="addpic" />
+        <scroll-view class="picpreview"scroll-x="false" wx:if="{{previewPicFlage}}"   
+         scroll-y="true" style="height:{{cachetprscrollHeight}}px">
+          <view class="scrollview">
+          <block wx:for="{{previewPicList}}" wx:key="{{index}}">
+              <view class="picevery" style="height:{{cachetprivewHeight}}px">
+                    <image class="previewPic"src="{{item}}"></image>
+                     <image class="deletePic" src="/static/pic/windowback.png" bindtap="delPrivewPic" data-index="{{index}}"></image>
+                
+              </view>
+          </block>
+          </view>
+        </scroll-view>
+   <van-cell title="{{wayinfor}}" is-link bind:click="showPopup" />
+    <van-popup 
+        show="{{ show }}" 
+        round
+        bind:close="onClose" 
+        position="bottom">
+        <van-picker
+          columns="{{wayList}}"
+             default-index="{{0}}"
+          bind:cancel="wayCancel"
+          bind:confirm="wayConfirm"
+          show-toolbar
+          confirm-button-text="确认"
+          cancel-button-text="取消"
+          visible-item-count="4"
+          item-height="40"
+        />
+    </van-popup>
+    <van-field
+      value=""
+      label="订单备注:"
+      placeholder="选填，请和商家协商一致"
+      bind:blur="explainChange"
+    />
+   </van-cell-group>
+            <view class="allprice" style="height:{{otherinforListHeight}}px">
+             <view class="allpriceLeft">共{{allnumber}}件</view>
+             <view class="allpriceRight">
+                 <text class="moneyicon">￥</text><text class="money">{{allprice}}</text><text class="money2"></text>
+             </view>
+          </view>
+        </view>
+      </view>
+      </view>
+     </view >
+</scroll-view>
+
+<view class="inforfoot" style="height:{{inforfootHeight}}px"> 
+      <view class="inforfootmagin">
+          <view class="inforfootLeft">
+            <text class="test1">共{{allnumber}}件，</text>
+            <text class="test2">合计：</text>
+            <text class="test3">￥</text>
+            <text class="test4">{{allprice}}</text>
+          </view>
+          <view class="inforfootRight">
+              <button class="footRightBtn" bindtap="ordersubmit">提交订单</button>
+          </view></view>
+</view>

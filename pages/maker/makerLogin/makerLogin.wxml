@@ -1,0 +1,20 @@
+<!--pages/makerLogin/makerLogin.wxml-->
+<view class="main">
+   <view class="content">
+     <van-cell-group>
+      <van-field
+        value=""
+        placeholder="帐号"
+        bind:blur="nameClick"
+      />
+            <van-field
+            type="password"
+        value=""
+        placeholder="密码"
+        bind:blur="passwordClick"
+      />
+    </van-cell-group>
+    <view class="foot"><button class="submitbtn" bindtap="submit">登录</button></view>
+   </view>
+</view>
+
