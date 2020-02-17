@@ -5,7 +5,7 @@
     placeholder="姓名"
     label="收件人"
     right-icon="contact"
-    bind:blur="nameChange"
+    bind:input="nameChange"
   />
   <van-field
     value=""
@@ -13,7 +13,7 @@
     type="number"
     placeholder="请输入手机号"
     error-message="{{phoneWarning}}"
-    bind:blur="phoneChange"
+    bind:input="phoneChange"
   />
     <van-cell title="{{cityinfor}}" is-link bind:click="showPopup" />
     <van-popup 
@@ -32,7 +32,7 @@
     <van-field
     value=""
     placeholder="详细地址：如道路、门牌号、小区、楼栋号、单元室等"
-    bind:blur="addressChange"
+    bind:input="addressChange"
   />
   <view class="choose">
     <view class="chooseright">

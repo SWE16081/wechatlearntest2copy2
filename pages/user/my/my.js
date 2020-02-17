@@ -15,11 +15,12 @@ Page({
     waitSend:'',
     waitGet:'',
     waitComment:'',
+    userpic:'',//用户头像
   },
   //待处理订单条数数据设置
   inforListDataMake(){
     var userid = wx.getStorageSync(this.data.Userid)
-    var accesstoken = wx.getStorageSync(this.data.Token)
+    // var accesstoken = wx.getStorageSync(this.data.Token)
        request({
          url: this.data.WEB + '/api/user/OrderLenSel',
          method: 'post',
@@ -28,7 +29,7 @@ Page({
          },
          header: {
            'content-type': 'application/json',
-           Authorization: "Bearer " + accesstoken
+          //  Authorization: "Bearer " + accesstoken
          }
        }).then(res => {
      
@@ -61,11 +62,31 @@ Page({
        })
 
   },
+
+  //获取用户头像
+  //  userData(){
+  //    console.log("用户信息加载")
+  //     wx.getUserInfo({
+  //         success: function (res) {
+  //           console.log("用户信息", res.userInfores)
+  //           var userInfo = res.userInfo
+  //           this.setData({
+  //             userpic: userInfo.avatarUrl
+  //           })
+  //         }
+  //     })     
+  //  },
+  //修改地址
+  updateAddress(){
+    wx.navigateTo({
+      url: '/pages/user/addresslist/addresslist',
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    // this.userData()//获取用户信息
   },
   //退出登录
   dropLogin(){
@@ -92,6 +113,7 @@ Page({
    */
   onShow: function () {
     this.inforListDataMake()
+    
   },
 
   /**

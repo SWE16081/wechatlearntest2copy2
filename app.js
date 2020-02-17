@@ -34,23 +34,23 @@ App({
     //清除缓存
     // wx.clearStorage()
     // 从缓存中取出token,role
-    const token = wx.getStorageSync(this.globalData.Token)
+    const userid = wx.getStorageSync(this.globalData.UserID)
     const role = wx.getStorageSync(this.globalData.Role)
     //判断用户角色
-    if (token && token.length !== 0 && role && role.length !== 0){
+    if (userid && userid.length !== 0 && role && role.length !== 0){
       if (role == 1) {//普通用户跳转制作公章页面
         wx.switchTab({
           url: '/pages/user/home/home',
         })
       } else {//商家用户
-        if (token && token.length !== 0) {
+        // if (token && token.length !== 0) {
           // this.check_token(token)//验证token是否过期
 
           //刷新token
           wx.redirectTo({
             url: '/pages/maker/makerIndex/makerIndex',
           })
-        }
+        // }
     }
     }
     // else{

@@ -19,39 +19,50 @@ Page({
   },
   //帐号点击
   nameClick(event) {
-    var name = event.detail.value
+    // console.log('正在输入',event.detail)
+    var name = event.detail
     this.setData({
       name: name
     })
   },
   //密码点击
   passwordClick(event) {
-    var password = event.detail.value
+    var password = event.detail
     this.setData({
       password: password
     })
 
   },
-
+  //确认判断
+  judge() {
+    var name = this.data.name
+    var password = this.data.password
+    if (name == '') {
+      wx.showToast({
+        title: '帐号不能为空',
+        icon: 'none',
+        duration: 1000
+      })
+      return false
+    } else if (password == '') {
+      wx.showToast({
+        title: '密码不能为空',
+        icon: 'none',
+        duration: 1000
+      })
+      return false
+    }else{
+      return true
+    }
+    
+  },
 //登录
   submit(){
-   var name=this.data.name
-   var password=this.data.password
-    var that = this
-    //获取laravel的token请求后端api
-    request({
-      url: that.data.WEB + '/oauth/token',
-      data: {
-        grant_type: 'client_credentials',
-        client_id: '3',
-        client_secret: 'vGOdopoxPHn93OoGK78wbbMstauiJmv8gHec7l1l',
-      },
-      method: 'post',
-      header: {
-        'content-type': 'application/json; charset=UTF-8'
-      }
-    }).then(res => {
-      var accesstoken = res.data.access_token
+    var flage = this.judge()
+    if (flage){
+      var name = this.data.name
+      var password = this.data.password
+      var that = this
       request({
         url: that.data.WEB + '/api/maker/login',
         method: 'post',
@@ -61,13 +72,13 @@ Page({
         },
         header: {
           'content-type': 'application/json',
-          Authorization: "Bearer " + accesstoken
+          // Authorization: "Bearer " + accesstoken
         }
       }).then(res => {
         console.log('商家登录', res.data)
         if (res.data.res == 'success') {
           // //将存储到storage中
-          wx.setStorageSync(that.data.Token, accesstoken)//同步存储
+          // wx.setStorageSync(that.data.Token, accesstoken)//同步存储
           wx.setStorageSync(that.data.Role, 2)
           wx.setStorageSync(that.data.Userid, res.data.userid)
           wx.showToast({
@@ -79,13 +90,35 @@ Page({
           wx.reLaunch({
             url: '/pages/maker/makerIndex/makerIndex',
           })
+        } else {
+          wx.showToast({
+            title: '账号密码错误',
+            icon: 'success',
+            duration: 3000
+          })
         }
       }).catch(err => {
         console.log(err)
       })
-    }).catch(err => {
-      console.log(err)
-    })
+      //获取laravel的token请求后端api
+      // request({
+      //   url: that.data.WEB + '/oauth/token',
+      //   data: {
+      //     grant_type: 'client_credentials',
+      //     client_id: '3',
+      //     client_secret: 'vGOdopoxPHn93OoGK78wbbMstauiJmv8gHec7l1l',
+      //   },
+      //   method: 'post',
+      //   header: {
+      //     'content-type': 'application/json; charset=UTF-8'
+      //   }
+      // }).then(res => {
+      //   // var accesstoken = res.data.access_token
+      // }).catch(err => {
+      //   console.log(err)
+      // })
+    }
+   
   },
 
   /**

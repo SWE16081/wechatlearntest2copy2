@@ -25,7 +25,7 @@
          </van-cell>
         </van-cell-group>
         <view class="cacontent">
-          <block wx:for="{{orderdata.order}}" wx:key="{{index}}">
+          <block wx:for="{{orderdata.order}}" wx:key="index">
             <view class="contentList" style="height:{{cachetHeight}}px">
             
             <view class="ListLeft">
@@ -45,7 +45,9 @@
               </view>
     
             </view>
+            <van-cell   title="刻字内容:" value="{{item.cachetinfo}}" />
           </block>
+          
           <view class="otherinfo">
            <view class="otherup" style="height:{{kindheight}}px">
              共{{allnumber}}件商品 合计：￥<text class="price">{{allprice}}</text>
@@ -76,6 +78,7 @@
           <van-cell   title="支付方式" value="在线支付" />
           
           <van-cell   title="下单时间" value="{{orderdata.created_at}}" />
+          <van-cell   title="订单备注" value="{{explain}}" />
         </van-cell-group>
       
       </view>

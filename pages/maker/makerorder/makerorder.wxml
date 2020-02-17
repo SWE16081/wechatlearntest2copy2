@@ -2,16 +2,16 @@
 <view class="background:#bfbfbf36">
 <van-tabs active="{{ index }}" swipe-threshold="6" bind:click="onClick">
   <van-tab title="全部" >
-  <block  wx:for="{{orderData}}" wx:key="{{index}}" >
+   <block  wx:for="{{orderData}}" wx:key="index" >
       <view class="titleListmar">
-       <view class="titleList" bindtap="orderdetail" data-orderid="{{item.orderid}}">
+       <view class="titleList" >
          <view class="makerinfo"  style="height:{{kindheight}}px">
            <view class="makerleft"><image src="/static/pic/shop.png" style="height:{{picHeight2}}px;width:{{picHeight2}}px"
            ></image>{{orderMaker}}</view>
            <view class="makerright">{{item.orderState}}</view>
          </view>
-         <block wx:for="{{item.order}}" wx:for-index="itemindex" wx:for-item="itemvalue" wx:key="{{itemindex}}">
-          <view class="orderinfo" style="height:{{cachetHeight}}px">
+         <block wx:for="{{item.order}}" wx:for-index="itemindex" wx:for-item="itemvalue" wx:key="itemindex">
+          <view class="orderinfo"bindtap="orderdetail" data-orderid="{{item.orderid}}" style="height:{{cachetHeight}}px">
            <view class="orderLeft"><image src="{{WEB}}/{{itemvalue.picpath}}" class="makerpic"
            style="height:{{picHeight}}px;width:{{picHeight}}px" ></image></view>
            <view class="orderMiddle">
@@ -39,8 +39,8 @@
              bindtap="affirmSend" >确认发货</button>
                <button wx:if="{{item.state==3}}" class="otherdownbtn"  data-orderid="{{item.orderid}}"
             bindtap="">配送中</button>
-            <button wx:if="{{item.state==4}}" class="otherdownbtn"  data-orderid="{{item.orderid}}"
-            bindtap="comment">评价</button>
+            <!-- <button wx:if="{{item.state==4}}" class="otherdownbtn"  data-orderid="{{item.orderid}}"
+            bindtap="comment">评价</button> -->
            </view>
          </view>
      </view>
@@ -49,16 +49,16 @@
 
   </van-tab>
   <van-tab title="待发货">
-    <block  wx:for="{{orderData}}" wx:key="{{index}}" >
+    <block  wx:for="{{orderData}}" wx:key="index" >
       <view class="titleListmar">
-        <view class="titleList" bindtap="orderdetail" data-orderid="{{item.orderid}}">
+        <view class="titleList" >
          <view class="makerinfo"  style="height:{{kindheight}}px">
            <view class="makerleft"><image src="/static/pic/shop.png" style="height:{{picHeight2}}px;width:{{picHeight2}}px"
            ></image>{{orderMaker}}</view>
            <view class="makerright">{{item.orderState}}</view>
          </view>
-         <block wx:for="{{item.order}}" wx:for-index="itemindex" wx:for-item="itemvalue" wx:key="{{itemindex}}">
-          <view class="orderinfo" style="height:{{cachetHeight}}px">
+         <block wx:for="{{item.order}}" wx:for-index="itemindex" wx:for-item="itemvalue" wx:key="itemindex">
+          <view class="orderinfo"bindtap="orderdetail" data-orderid="{{item.orderid}}" style="height:{{cachetHeight}}px">
            <view class="orderLeft"><image src="{{WEB}}/{{itemvalue.picpath}}" class="makerpic"
            style="height:{{picHeight}}px;width:{{picHeight}}px" ></image></view>
            <view class="orderMiddle">
@@ -86,8 +86,8 @@
              bindtap="affirmSend" >确认发货</button>
           <button wx:if="{{item.state==3}}" class="otherdownbtn"  data-orderid="{{item.orderid}}"
             bindtap="">配送中</button>
-            <button wx:if="{{item.state==4}}" class="otherdownbtn"  data-orderid="{{item.orderid}}"
-            bindtap="comment">评价</button>
+            <!-- <button wx:if="{{item.state==4}}" class="otherdownbtn"  data-orderid="{{item.orderid}}"
+            bindtap="comment">评价</button> -->
            </view>
          </view>
      </view>
@@ -96,16 +96,16 @@
   </van-tab>
   
   <van-tab title="配送中">
-     <block  wx:for="{{orderData}}" wx:key="{{index}}" >
+     <block  wx:for="{{orderData}}" wx:key="index" >
       <view class="titleListmar">
-       <view class="titleList"bindtap="orderdetail" data-orderid="{{item.orderid}}">
+       <view class="titleList">
          <view class="makerinfo"  style="height:{{kindheight}}px">
            <view class="makerleft"><image src="/static/pic/shop.png" style="height:{{picHeight2}}px;width:{{picHeight2}}px"
            ></image>{{orderMaker}}</view>
            <view class="makerright">{{item.orderState}}</view>
          </view>
-         <block wx:for="{{item.order}}" wx:for-index="itemindex" wx:for-item="itemvalue" wx:key="{{itemindex}}">
-          <view class="orderinfo" style="height:{{cachetHeight}}px">
+         <block wx:for="{{item.order}}" wx:for-index="itemindex" wx:for-item="itemvalue" wx:key="itemindex">
+          <view class="orderinfo"bindtap="orderdetail" data-orderid="{{item.orderid}}" style="height:{{cachetHeight}}px">
            <view class="orderLeft"><image src="{{WEB}}/{{itemvalue.picpath}}" class="makerpic"
            style="height:{{picHeight}}px;width:{{picHeight}}px" ></image></view>
            <view class="orderMiddle">
@@ -133,25 +133,25 @@
              bindtap="affirmSend" >确认发货</button>
           <button wx:if="{{item.state==3}}" class="otherdownbtn"  data-orderid="{{item.orderid}}"
             bindtap="">配送中</button>
-            <button wx:if="{{item.state==4}}" class="otherdownbtn"  data-orderid="{{item.orderid}}"
-            bindtap="comment">评价</button>
+            <!-- <button wx:if="{{item.state==4}}" class="otherdownbtn"  data-orderid="{{item.orderid}}"
+            bindtap="comment">评价</button> -->
            </view>
          </view>
      </view>
    </view>
   </block>
   </van-tab>
-  <van-tab title="评价">
-      <block  wx:for="{{orderData}}" wx:key="{{index}}" >
+  <!-- <van-tab title="评价">
+      <block  wx:for="{{orderData}}" wx:key="index" >
       <view class="titleListmar">
-       <view class="titleList"bindtap="orderdetail" data-orderid="{{item.orderid}}">
+       <view class="titleList">
          <view class="makerinfo"  style="height:{{kindheight}}px">
            <view class="makerleft"><image src="/static/pic/shop.png" style="height:{{picHeight2}}px;width:{{picHeight2}}px"
            ></image>{{orderMaker}}</view>
            <view class="makerright">{{item.orderState}}</view>
          </view>
-         <block wx:for="{{item.order}}" wx:for-index="itemindex" wx:for-item="itemvalue" wx:key="{{itemindex}}">
-          <view class="orderinfo" style="height:{{cachetHeight}}px">
+         <block wx:for="{{item.order}}" wx:for-index="itemindex" wx:for-item="itemvalue" wx:key="itemindex">
+          <view class="orderinfo"bindtap="orderdetail" data-orderid="{{item.orderid}}" style="height:{{cachetHeight}}px">
            <view class="orderLeft"><image src="{{WEB}}/{{itemvalue.picpath}}" class="makerpic"
            style="height:{{picHeight}}px;width:{{picHeight}}px" ></image></view>
            <view class="orderMiddle">
@@ -186,53 +186,49 @@
      </view>
    </view>
   </block>
-  </van-tab>
+  </van-tab> -->
   <van-tab title="消息">
-       <block  wx:for="{{orderData}}" wx:key="{{index}}" >
-      <view class="titleListmar">
-       <view class="titleList"bindtap="orderdetail" data-orderid="{{item.orderid}}">
-         <view class="makerinfo"  style="height:{{kindheight}}px">
-           <view class="makerleft"><image src="/static/pic/shop.png" style="height:{{picHeight2}}px;width:{{picHeight2}}px"
-           ></image>{{orderMaker}}</view>
-           <view class="makerright">{{item.orderState}}</view>
-         </view>
-         <block wx:for="{{item.order}}" wx:for-index="itemindex" wx:for-item="itemvalue" wx:key="{{itemindex}}">
-          <view class="orderinfo" style="height:{{cachetHeight}}px">
-           <view class="orderLeft"><image src="{{WEB}}/{{itemvalue.picpath}}" class="makerpic"
-           style="height:{{picHeight}}px;width:{{picHeight}}px" ></image></view>
-           <view class="orderMiddle">
-             <view class="Middleup">{{itemvalue.cachetexplain}}</view>
-             <view class="Middledown">{{itemvalue.cachetname}}{{itemvalue.cachetsize}}{{itemvalue.cachetcolor}}</view>
-           </view>
-           <view class="orderRight">
-            <view class="MiddleLeft">
-              <view class="rightUp">￥<text class="price">{{itemvalue.price[0]}}</text>.{{itemvalue.price[1]}}</view>
-              <view class="rightDown">x{{itemvalue.number}}</view>
-            </view>
-           </view>
+    <block wx:for="{{infoData}}" wx:key="index">
+       <view class="info">
+         <van-panel title="订单号" desc="{{item.remindinfoid}}" 
+           status="待处理" use-footer-slot>
+            <van-cell title="该用户催促您发货"border="false" value="" />
+            <van-cell title="{{item.backinfo}}"    data-index="{{index}}"
+            is-link bind:click="showPopup" />
+          <view slot="footer" class="infofooter">
+          
+          <van-button color="#38c172" round plain 
+           data-backinfo="{{item.backinfo}}"
+         
+            data-orderid="{{item.orderid}}"bindtap="infoback"
+            size="small">回复</van-button>
           </view>
-         </block>
-         <view class="otherinfo">
-           <view class="otherup" style="height:{{kindheight}}px">
-             共{{item.allnumber}}件商品 合计：￥<text class="price">{{item.allprice}}</text>
-           </view>
-           <view class="otherdown" style="height:{{kindheight}}px">
-            <button wx:if="{{item.state==0}}" class="otherdownbtn" bindtap="delete" 
-            data-orderid="{{item.orderid}}">删除</button>
-            <button wx:if="{{item.state==1}}" class="otherdownbtn" data-orderid="{{item.orderid}}"
-             bindtap="payfor">支付</button>
-            <button wx:if="{{item.state==2}}" class="otherdownbtn" data-orderid="{{item.orderid}}"
-             bindtap="affirmSend" >确认发货</button>
-          <button wx:if="{{item.state==3}}" class="otherdownbtn"  data-orderid="{{item.orderid}}"
-            bindtap="">配送中</button>
-            <button wx:if="{{item.state==4}}" class="otherdownbtn"  data-orderid="{{item.orderid}}"
-            bindtap="comment">评价</button>
-           </view>
-         </view>
-     </view>
-   </view>
-  </block>
+        </van-panel>
+       </view>
+    </block>
   </van-tab>
 </van-tabs>
 </view>
-
+     <block wx:for="{{orderData}}" wx:key="index">
+       <van-popup 
+        show="{{ item.show }}" 
+        round
+        bind:close="onClose" 
+          
+        position="bottom">
+        <van-picker
+          columns="{{backinfolist}}"
+          data-index="{{index}}"
+             default-index="{{0}}"
+          bind:cancel="wayCancel"
+          bind:confirm="wayConfirm"
+        
+          show-toolbar
+          confirm-button-text="确认"
+          cancel-button-text="取消"
+          visible-item-count="3"
+          item-height="40"
+        />
+    </van-popup></block>
+     
+ 

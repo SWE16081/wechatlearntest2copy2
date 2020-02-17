@@ -12,7 +12,7 @@
         <van-info
         wx:if="{{ info !== null }}"
         info="{{ info }}"
-        custom-style="margin-top: 20px;margin-right:20px;"
+        custom-style="margin-top: 15px;margin-right:37px;"
         />
       </view>
       <view class="van-grid-item__text">

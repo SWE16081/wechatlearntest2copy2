@@ -32,6 +32,7 @@ Page({
     sizeInput:[],
     colorInput:[],
     picInput:[],
+    cachetrepate:false,//默认设置公章名不重复
   },
   //公章种类取消
 Cancel(e){
@@ -75,34 +76,43 @@ cachetNameClick(event){
   //检验公章名称是否重复
   var userid=wx.getStorageSync(this.data.Userid)
   console.log('userid',userid)
-  var accesstoken=wx.getStorageSync(this.data.Token)
-  request({
-    url: this.data.WEB + '/api/maker/checkrepeat',
-    method: 'post',
-    data: {
-      userid: userid,
-      cachetname: event.detail.value
-    },
-    header: {
-      'content-type': 'application/json',
-      Authorization: "Bearer " + accesstoken
-    }
-  }).then(res=>{
-    console.log('公章名称check',res.data)
-    if(res.data.status=="fail"){
+  var flage=this.data.cachetrepate
+  if(!flage){
+    request({
+      url: this.data.WEB + '/api/maker/checkrepeat',
+      method: 'post',
+      data: {
+        userid: userid,
+        cachetname: event.detail.value
+      },
+      header: {
+        'content-type': 'application/json',
+        // Authorization: "Bearer " + accesstoken
+      }
+    }).then(res=>{
+      console.log('公章名称check',res.data)
+      if(res.data.status=="fail"){
+        this.setData({
+          cachetnameInput: event.detail.value,
+          cachetrepate:false
+        })
+    }else{//重复
+        wx.showToast({
+          title: '公章名称重复',
+          duration: 1000,
+          icon: 'none'
+        })
+        //用于判断公章名是否重复
       this.setData({
-        cachetnameInput: event.detail.value
+        cachetrepate:true
       })
-  }else{
-      wx.showToast({
-        title: '公章名称重复',
-        duration: 1000,
-        icon: 'none'
-      })
+    }
+    }).catch(err=>{
+      console.log(err)
+    })
   }
-  }).catch(err=>{
-    console.log(err)
-  })
+  // var accesstoken=wx.getStorageSync(this.data.Token)
+ 
 
 },
 //添加尺寸价格filed
@@ -133,6 +143,7 @@ addcachetcolor(){
 },
 //价格点击
 cachetpriceClick(event){
+  console.log("价格",event)
   var index=event.currentTarget.dataset.index
   if (event.detail.value!=""){
     var arr = {}
@@ -251,6 +262,7 @@ judge(){
   var sizeInput = this.data.sizeInput
   var colorInput = this.data.colorInput
   var previewPicList = this.data.previewPicList
+  var cachetrepate=this.data.cachetrepate
   console.log('公章价格', priceInput)
   if (cachetKindInfo==''){
     wx.showToast({
@@ -259,7 +271,15 @@ judge(){
       duration:1000
     })
     return false
-  } else if (cachetnameInput == ''){
+  }else if (cachetrepate==true){
+    wx.showToast({
+      title: '公章名称已存在',
+      icon: 'none',
+      duration: 1000
+    })
+    return false
+  } 
+  else if (cachetnameInput == ''){
     wx.showToast({
       title: '请填写公章名称',
       icon: 'none',
@@ -302,7 +322,8 @@ judge(){
       duration: 1000
     })
     return false
-  } else if (previewPicList == '') {
+  } else if (previewPicList.length==0) {
+    console.log(typeof(previewPicList))
     wx.showToast({
       title: '请上传公章图片',
       icon: 'none',
@@ -327,57 +348,71 @@ datasetBe(){
 },
 //确认
 affirm(){
-  console.log('确认')
+  // console.log('确认')
   var flage = this.judge()
-  if (flage){
-    // this.datasetBe()
-    var userid = wx.getStorageSync(this.data.Userid)
-    var accesstoken = wx.getStorageSync(this.data.Token)
-    var len = this.data.previewPicList.length
-    console.log('len', len)
-    var formData = {
-      userid: userid,
-      cachetKindInfo: this.data.cachetKindInfo,
-      cachetnameInput: this.data.cachetnameInput,
-      priceInput: JSON.stringify(this.data.priceInput),
-      sizeInput: JSON.stringify(this.data.sizeInput),
-      colorInput: JSON.stringify(this.data.colorInput),
-    }
- var sum=0
-    for (var i = 0; i < len; i++) {
-      wx.uploadFile({
-        url: this.data.WEB + '/api/maker/addcachet', //仅为示例，非真实的接口地址
-        filePath: this.data.previewPicList[i],
-        name: 'file',
-        method: 'post',
-        header: {
-          "Content-Type": "multipart/form-data",
-          'accept': 'application/json',
-          'Authorization': 'Bearer ' + accesstoken //若有token，此处换上你的token，没有的话省略
-        },
-        formData: formData,
-        success(res) {
-          //do something
-          console.log('上传回传数据', JSON.parse(res.data))
-          var result = JSON.parse(res.data)
-          if(result.status=='success'){
-             sum++
-             console.log(sum)
-            if (sum == len) {
-              wx.showToast({
-                title: '添加成功',
-                duration: 500
-              })
-              setTimeout(function () {
-                wx.navigateBack({
-                  url: "/pages/maker/cachetmake/cachetmake"
-                })
-              }, 500);
-            }
+  // console.log("判断",flage)
+    if (flage){
+      // this.datasetBe()
+      var userid = wx.getStorageSync(this.data.Userid)
+      // var accesstoken = wx.getStorageSync(this.data.Token)
+      var len = this.data.previewPicList.length
+      // console.log('len', len)
+      var formData = {
+        userid: userid,
+        cachetKindInfo: this.data.cachetKindInfo,
+        cachetnameInput: this.data.cachetnameInput,
+        priceInput: JSON.stringify(this.data.priceInput),
+        sizeInput: JSON.stringify(this.data.sizeInput),
+        colorInput: JSON.stringify(this.data.colorInput),
+      }
+      wx.showLoading({
+        title: '上传中',
+        success:(res)=>{
+          console.log(res)
+          var sum = 0
+          for (var i = 0; i < len; i++) {
+            wx.uploadFile({
+              url: this.data.WEB + '/api/maker/addcachet', //仅为示例，非真实的接口地址
+              filePath: this.data.previewPicList[i],
+              name: 'file',
+              method: 'post',
+              header: {
+                "Content-Type": "multipart/form-data",
+                'accept': 'application/json',
+                // 'Authorization': 'Bearer ' + accesstoken //若有token，此处换上你的token，没有的话省略
+              },
+              formData: formData,
+              success(res) {
+                //do something
+                console.log('上传回传数据', JSON.parse(res.data))
+                var result = JSON.parse(res.data)
+
+                if (result.status == 'success') {
+                  sum++
+                  console.log(sum)
+                  if (sum == len) {
+                    wx.showToast({
+                      title: '添加成功',
+                      duration: 500
+                    })
+                    setTimeout(function () {
+                      wx.navigateBack({
+                        url: "/pages/maker/cachetmake/cachetmake"
+                      })
+                    }, 500);
+                  }
+                }
+              }
+            })
+
           }
         }
       })
-    }
+      setTimeout(function () {
+        wx.hideLoading()
+      },1500)
+     
+   
  
   }
 },
@@ -386,7 +421,7 @@ affirm(){
 KinddataRequest() {
     var userid = wx.getStorageSync(this.data.Userid)
     console.log('user', userid)
-    var accesstoken = wx.getStorageSync(this.data.Token)
+    // var accesstoken = wx.getStorageSync(this.data.Token)
     request({
       url: this.data.WEB + '/api/maker/selcakind2',
       method: 'post',
@@ -395,7 +430,7 @@ KinddataRequest() {
       },
       header: {
         'content-type': 'application/json',
-        Authorization: "Bearer " + accesstoken
+        // Authorization: "Bearer " + accesstoken
       }
     }).then(res => {
       if(res.data.status=='success'){

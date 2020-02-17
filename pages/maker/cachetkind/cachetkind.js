@@ -68,7 +68,7 @@ Page({
  //删除公章种类
   delete(event){
     var cachetkindid = event.currentTarget.dataset.cachetkindid
-    var accesstoken = wx.getStorageSync(this.data.Token)
+    // var accesstoken = wx.getStorageSync(this.data.Token)
     request({
       url: this.data.WEB + '/api/maker/deletecakind',
       method: 'post',
@@ -77,7 +77,7 @@ Page({
       },
       header: {
         'content-type': 'application/json',
-        Authorization: "Bearer " + accesstoken
+        // Authorization: "Bearer " + accesstoken
       }
     }).then(res => {
       if (res.data.status == 'success') {
@@ -97,7 +97,7 @@ Page({
 //页面数据请求
 dataRequest(){
   var userid=wx.getStorageSync(this.data.Userid)
-  var accesstoken=wx.getStorageSync(this.data.Token)
+  // var accesstoken=wx.getStorageSync(this.data.Token)
   request({
     url: this.data.WEB + '/api/maker/selcakind2',
     method:'post',
@@ -106,7 +106,7 @@ dataRequest(){
     },
     header:{
       'content-type': 'application/json',
-      Authorization: "Bearer " + accesstoken
+      // Authorization: "Bearer " + accesstoken
     }
   }).then(res=>{
     console.log('公章种类显示页面')

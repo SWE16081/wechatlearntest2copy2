@@ -7,12 +7,14 @@
       <view class="informargin">
         <van-cell
           is-link
-          title="消息"
+          title="新订单"
           link-type="navigateTo"
-          url="/pages/dashboard/index"
+          bindtap="doneOrder"
+          value="处理" 
         />
         <swiper class="infoswiper" duration="1000" autoplay="true"vertical="true"
          style="height:{{InforSwiperHeight}}px">
+         <!-- <block wx:for="{{}}" wx:key="index"></block> -->
           <swiper-item class="swiperitem">
             您有新的订单啦
           </swiper-item>
@@ -48,31 +50,69 @@
 </view>
 <view class="tabbar" wx:if="{{tabshow[1]}}">
     <view class="header">
-   <view class="headerLeft">
-     <image class="headpic" src="/static/pic/a.jpg"></image>
-   </view>
-   <view class="headerRight"></view>
+   <!-- <view class="headerLeft"> -->
+     <!-- <image class="headpic" src="/static/pic/a.jpg"></image> -->
+     <open-data class="headpic" type="userAvatarUrl"></open-data>
+     <open-data  class="username"type="userNickName"></open-data>
+   <!-- </view> -->
+   <!-- <view class="headerRight"></view> -->
  </view>
 <view class="order">
     <van-cell title="我的订单" is-link value="查看全部订单" bindtap="seeAllorder"/>
-    <van-grid clickable="true">
+    <van-grid clickable="true" column-num="3">
     <van-grid-item icon="/static/pic/waitsend.png"link-type="navigateTo"
-     
     url="/pages/maker/makerorder/makerorder?index=1" text="待发货" info="{{waitSend}}" />
     <van-grid-item icon="/static/pic/waitget.png" link-type="navigateTo"
     url="/pages/maker/makerorder/makerorder?index=2" text="配送中" info="{{waitGet}}" />
-    <van-grid-item icon="/static/pic/comment.png" link-type="navigateTo"
-    url="/pages/maker/makerorder/makerorder?index=3" info="{{waitComment}}"text="评价" />
+    <!-- <van-grid-item icon="/static/pic/comment.png" link-type="navigateTo"
+    url="/pages/maker/makerorder/makerorder?index=3" info="{{waitComment}}"text="评价" /> -->
     <van-grid-item icon="/static/pic/message.png" link-type="navigateTo"
-    url="/pages/maker/makerorder/makerorder?index=4" info="{{message}}"text="消息" />
+    url="/pages/maker/makerorder/makerorder?index=3" info="{{message}}"text="消息" />
   </van-grid> 
 </view>
 <view class="other">
-<van-cell title="个人设置" is-link />
+<van-cell title="公司信息" is-link bindtap="companyInfo"/>
 <van-cell title="帮助" is-link />
-<van-cell title="反馈" is-link />
+<van-cell title="快递费用" is-link bindtap="expressPrice" />
 <van-cell title="退出登录" is-link  bindtap="dropLogin"/>
 </view>
+
+    <!-- 模态框 -->
+    <view class="mainmodel" wx-if="{{mainmodelshow}}"  bindtap="modelclose" style="height:{{Height}}px"
+      catchtouchmove="preventscroll">
+      <!-- catchtouchmove="preventscroll"禁止底层页面滚动 -->
+    </view>
+    <!-- 修改快递弹出框 -->
+    <view class="expresscontent"  animation="{{animation}}"wx-if="{{mainmodelshow}}" 
+         style="height:{{ModelHeight}}px;">
+              <image class="backpic" src="/static/pic/windowback.png" bindtap="modelclose"></image>
+        <view class="expressinput">
+        <van-cell-group>
+          <van-field
+          wx-if="{{expressFlage==true}}"
+            value="{{ value }}"
+            border="true"
+            placeholder="请填写快递费用"
+            bind:change="expressinput"
+            type="number"
+          />
+          <van-cell title="当前快递费用" value=""  wx-if="{{expressFlage==false}}" />
+           <van-field
+          wx-if="{{expressFlage==false}}"
+            value=""
+            border="true"
+            placeholder="{{exPrice}}"
+            bind:change="expressinput"
+            type="number"
+          />
+          </van-cell-group>
+        </view>
+        <view class="foot">
+          <button class="subbtn" bindtap="exaffirm">确认     </button>
+        </view>
+        
+  </view>
+
 <view class="drop">
 </view>
 </view>

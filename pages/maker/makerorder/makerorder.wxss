@@ -50,7 +50,7 @@ page{
     display: flex;
   align-items: center;
   justify-content: flex-end;
-  color:rgba(255, 51, 0, 0.87);
+  color:#38c172;
 }
 .orderLeft{
  display: flex;
@@ -123,11 +123,26 @@ page{
   /* width: 50px; */
   font-size: 13px;
   background-color: #ffffff;
-  color:rgba(255, 51, 0, 0.87);
-  border:1px solid rgba(255, 51, 0, 0.87);
+  color:#38c172;
+  border:1px solid #38c172;
   border-radius: 10px;
    display:flex;
   align-items: center;
   justify-content: center;
   margin-right: 2px;
+}
+.info{
+  width:96%;
+  margin-left:2%;
+  margin-right:2%;
+  margin-top:40rpx;
+  margin-bottom:20rpx;
+}
+.infocontent{
+  margin-left: 10px;
+}
+.infofooter{
+  display: flex;
+  justify-content: flex-end;
+
 }

@@ -1,30 +1,42 @@
 <!--pages/maker/cachetmake/cachetmake.wxml-->
 <view class="main">
+  
   <view class="makeup">
+    <van-cell
+      is-link
+      title="查看全部系列"
+      bindtap="selAll"
+    />
       <swiper class="makeswiper" indicator-dots="true"	indicator-active-color="#38c172" 
       style="height:{{makecacheSwipertHeight}}px;">
-      <block wx:for="{{cachetkindData}}" wx:key="{{index}}">
+      <block wx:for="{{cachetkindData}}" wx:key="index">
           <swiper-item>
-              <block wx:for="{{item}}" wx:for-item="itemname" wx:for-index="itemindex"wx:key="{{itemindex}}">
+              <block wx:for="{{item}}" wx:for-item="itemname" wx:for-index="itemindex"wx:key="itemindex">
                 <view class="makedownbtn">
                 <span class="btnview" bindtap="swiperonclick" 
-                data-cachetkindid="{{itemname.cachetKindid}}">{{itemname.cakindname}}</span>
+                data-cachetkindid="{{itemname.cachetKindid}}"
+                data-cakindname="{{itemname.cakindname}}"
+                >{{itemname.cakindname}}</span>
                 </view>
               </block>
           </swiper-item>
       </block>
+      <view class="scrollFoot"></view>
       </swiper>
   </view>
 
   <view class="makedown">
+
       <van-cell
       is-link
       title="添加公章"
       link-type="navigateTo"
       url="/pages/maker/cachetadd/cachetadd"
+      value="{{addinfo}}"
     />
+
    <scroll-view class="makeScroll" scroll-x="false" scroll-y="true" style="height:{{makeScrollHeight}}px;">
-     <block wx:for="{{cachetData}}" wx:key="{{index}}">
+     <block wx:for="{{cachetData}}" wx:key="index">
          <view class="makeScroll-item">
             <movable-area class="cachetarea"style="height:{{cachetHeight}}px;width:{{movableareaWdith}}px">
               <movable-view class="cachetview" style="height:{{cachetHeight}}px;width:{{movableViewWidth}}px"
@@ -43,14 +55,14 @@
                         <view class="middleMiddle">
                           尺寸：
                           <block wx:for="{{item.cachetSize}}" wx:for-index="indexname" 
-                          wx:for-item="itemname" wx:key="{{indexname}}">
+                          wx:for-item="itemname" wx:key="indexname">
                           <text decode="true">{{itemname.size}}&nbsp;</text>
                           </block>
                         </view>
                         <view class="middleDown">
                           颜色：
                             <block wx:for="{{item.cachetColor}}" wx:for-index="indexname" 
-                            wx:for-item="itemname" wx:key="{{indexname}}">
+                            wx:for-item="itemname" wx:key="indexname">
                               <text decode="true">{{itemname.color}}&nbsp;</text>
                             </block>
                         </view>

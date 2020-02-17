@@ -3824,7 +3824,8 @@ Page({
   },
   //姓名change,获取填写的姓名
   nameChange(event){
-    this.data.nameinput=event.detail.value
+    console.log("收件人",event.detail)
+    this.data.nameinput=event.detail
     this.setData({
       nameinput:this.data.nameinput
     })
@@ -3833,14 +3834,14 @@ Page({
   phoneChange(event){
     console.log('光标移开')
     console.log(event.detail)
-    this.data.phoneinput=event.detail.value
+    this.data.phoneinput=event.detail
     this.setData({
       phoneinput:this.data.phoneinput
     })
   },
   //详细地址change,获得填写的详细地址
   addressChange(event){
-    this.data.addressinput=event.detail.value
+    this.data.addressinput=event.detail
     this.setData({
       addressinput:this.data.addressinput
     })
@@ -3885,7 +3886,7 @@ Page({
     this.setData({ checked: detail });
   },
   submit(){
- 
+    console.log("提交")
     console.log(this.data.cityinput)
     var judge=this.subjudge()
     if(judge){
@@ -3896,7 +3897,7 @@ Page({
       var addressinput = this.data.addressinput
       var checked=this.data.checked
       var userid=wx.getStorageSync(this.data.Userid)
-      var accesstoken=wx.getStorageSync(this.data.Token)
+      // var accesstoken=wx.getStorageSync(this.data.Token)
       // cityinput = this.citydataDone(cityinput)
       console.log('cityinput',cityinput)
       request({
@@ -3912,10 +3913,11 @@ Page({
         },
         header: {
           'content-type': 'application/json',
-          Authorization: "Bearer " + accesstoken
+          // Authorization: "Bearer " + accesstoken
         }
       }).then(res=>{
-        if(res.data.res=='success'){
+        console.log("地址提交",res.data)
+        if(res.data.status=='success'){
           //跳转页面
           wx.navigateBack({
             url: '/pages/user/addresslist/addresslist'
@@ -3956,16 +3958,18 @@ Page({
       return false
     }
     else if (this.data.phoneinput.length!=11){
-      wx.showModal({
-        content: '手机号长度应为11为',
-        showCancel: false
+      wx.showToast({
+        title: '手机号长度应为11为',
+        icon: 'none',
+        duration: 1000
       })
       return false
     }
     else if (!myreg.test(this.data.phoneinput)){
-      wx.showModal({
-        content: '请填写存在的手机号',
-        showCancel: false
+      wx.showToast({
+        title: '请填写存在的手机号',
+        icon: 'none',
+        duration: 1000
       })
       return false
     }

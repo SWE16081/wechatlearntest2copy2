@@ -1,5 +1,5 @@
 <scroll-view class="main" scroll-x="false" scroll-y="true" style="height:{{mainheight}}px;width:{{Width}}px">
-   <view class="informationmagin" wx:if="{{addressflage}}"style="height:{{informationHeight}}px;">
+   <view class="informationmagin" wx:if="{{addressflage==true}}"style="height:{{informationHeight}}px;">
       <view class="information" bindtap="inforUpdate">
         <view class="inforleft">
           <view class="informationup">
@@ -15,10 +15,12 @@
         </view>
       </view>
    </view>
+
+
      <view  class="cachetinformagin">
       <view class="cachetinfor">
         <view class="cachetinforinner">
-        <block wx:for="{{shopcar.shopcar}}" wx:key="{{index}}">
+        <block wx:for="{{shopcar.shopcar}}" wx:key="index">
          <view class="cachetlist" style="height:{{cachetlistHeight}}px">
             <view class="listleft">
                <image src="{{WEB}}/{{item.picpath}}" style="height:{{picHeight}}px;width:{{picHeight}}px"></image>
@@ -44,7 +46,7 @@
         <scroll-view class="picpreview"scroll-x="false" wx:if="{{previewPicFlage}}"   
          scroll-y="true" style="height:{{cachetprscrollHeight}}px">
           <view class="scrollview">
-          <block wx:for="{{previewPicList}}" wx:key="{{index}}">
+          <block wx:for="{{previewPicList}}" wx:key="index">
               <view class="picevery" style="height:{{cachetprivewHeight}}px">
                     <image class="previewPic"src="{{item}}"></image>
                      <image class="deletePic" src="/static/pic/windowback.png" bindtap="delPrivewPic" data-index="{{index}}"></image>
@@ -77,6 +79,23 @@
       placeholder="选填，请和商家协商一致"
       bind:blur="explainChange"
     />
+
+      <van-field
+        wx:if="{{addressflage==false}}"
+        value=""
+        label="联系人姓名:"
+        placeholder="请填写联系人"
+        bind:input="buyername"
+    />
+      <van-field
+        wx:if="{{addressflage==false}}"
+        value=""
+        label="联系人电话:"
+        placeholder="请填写联系电话"
+        type="number"
+         error-message="{{phoneWarning}}"
+        bind:input="buyerphone"
+    />
    </van-cell-group>
             <view class="allprice" style="height:{{otherinforListHeight}}px">
              <view class="allpriceLeft">共{{allnumber}}件</view>
@@ -99,6 +118,6 @@
             <text class="test4">{{allprice}}</text>
           </view>
           <view class="inforfootRight">
-              <button class="footRightBtn" bindtap="ordersubmit">提交订单</button>
+              <button class="footRightBtn" bindtap="ordersubmit" data-allprice="{{allprice}}">提交订单</button>
           </view></view>
 </view>

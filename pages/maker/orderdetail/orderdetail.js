@@ -22,6 +22,7 @@ Page({
     orderdata:[],//订单数据
     allnumber:0,
     allprice:0,
+    explain: '暂无备注',//订单备注
   },
   //返回前一页
   backbefore(){
@@ -69,11 +70,16 @@ Page({
         Authorization: "Bearer " + accesstoken
       }
     }).then(res => {
-      console.log('订单详情',res.data)
+      console.log('订单详情',res.data.data)
       if (res.data.status == "success") {
          this.setData({
            orderdata:res.data.data
          })
+        if (res.data.data['explain'] != null) {
+          this.setData({
+            explain: res.data.data['explain']
+          })
+        }
          this.datamake()
          console.log('orderdata',this.data.orderdata)
       }

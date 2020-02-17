@@ -20,6 +20,7 @@
   margin-right:8px;
      overflow: hidden;
      margin-top: 6%;
+     margin-bottom: 20rpx;
      box-shadow: 2px 2px 10px #bdb7b7;
   border-radius: 10px;
 }
@@ -109,4 +110,7 @@ width: 20px;
   align-items: center;
   font-size:14px;
   color:#bfbfbf;
+}
+.scrollFoot{
+  height:10px;
 }

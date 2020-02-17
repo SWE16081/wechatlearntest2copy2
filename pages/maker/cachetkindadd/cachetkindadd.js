@@ -20,14 +20,18 @@ Page({
   },
   //公章种类名称点击
   NameClick(event){
-    var cachetkindname = event.detail.value 
+    console.log("种类名字", event.detail)
+    console.log("种类名字2", event)
+    var cachetkindname = event.detail
+    // console.log("种类名字", cachetkindname)
     this.setData({
       cachetkindname: cachetkindname
     })
   },
   //公章说明点击
   ExplainClick(event){
-    var cachetexplain = event.detail.value
+    var cachetexplain = event.detail
+    console.log("种类说明", cachetexplain)
     this.setData({
       cachetexplain: cachetexplain
     })
@@ -38,9 +42,11 @@ Page({
     var flage=this.jude()
     if(flage){
       var userid = wx.getStorageSync(this.data.Userid)
-      var accesstoken = wx.getStorageSync(this.data.Token)
+      // var accesstoken = wx.getStorageSync(this.data.Token)
       var cachetkindname = this.data.cachetkindname
       var cachetexplain = this.data.cachetexplain
+      console.log("公章种类", cachetkindname)
+      console.log("公章种类说明", cachetexplain)
       request({
         url: this.data.WEB + '/api/maker/addcakind',
         method: 'post',
@@ -51,7 +57,7 @@ Page({
         },
         header: {
           'content-type': 'application/json',
-          Authorization: "Bearer " + accesstoken
+          // Authorization: "Bearer " + accesstoken
         }
       }).then(res=>{
         if (res.data.status=='success'){
@@ -83,7 +89,7 @@ Page({
       return false
     } else if (this.data.cachetexplain == ''){
       wx.showToast({
-        title: '公章种类名称不能为空',
+        title: '公章种类说明不能为空',
         icon: 'none',
         duration: 1000
       })

@@ -16,7 +16,7 @@
    margin-left: 10px; 
    margin-top: 10px; 
     float: left;
-width: 30%;
+width: 29%;
 height: 38%;
 }
 .btnview{
@@ -163,4 +163,6 @@ border-radius: 10px;
   height: 20px;
   width: 20px;
 }
-
+.scrollFoot{
+  height:10px;
+}

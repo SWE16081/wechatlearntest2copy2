@@ -1,0 +1,102 @@
+/* pages/maker/updatecompanyinfo/updatecompanyinfo.wxss */
+.main{
+  margin-top:10px;
+  margin-left: 2%;
+  margin-right: 2%;
+  width: 96%;
+  border-radius: 10px;
+   box-shadow: 4px 4px 10px #bdb7b7;
+   border:1px solid #bdb7b7;
+}
+.mainMar{
+   margin-top:10px;
+}
+.infoview{
+  margin-left: 4%;
+  margin-right: 4%;
+  width: 92%;
+  /* border: 1px solid red; */
+}
+.textareaView{
+  height: 200rpx;
+  width: 100%;
+  /* border:1px solid #333; */
+  /* padding-left: 50rpx; */
+}
+.proveinfo{
+  height: 300px;
+  width: 100%;
+}
+.foot{
+   margin-left: 2%;
+  margin-right: 2%;
+  width: 96%;
+  margin-top: 10px;
+   margin-bottom: 10px;
+  /* border:1 px solid red; */
+}
+.subbtn{
+  background:#38c172;
+  color:#fff;
+  border-radius: 10px;
+}
+.picpreview{
+    width: 96%;
+  margin-left: 2%;
+  margin-right: 2%;
+  margin-top: 20rpx;
+  height:300px;
+     /* border:1px solid red; */
+       display:flex;
+       flex-direction: row;
+}
+
+.scrollview{
+    /* height: 100%; */
+  width: 100%;
+  float: left;
+  /* border:1px solid red; */
+
+}
+.picevery{
+  margin-top:10px;
+  margin-left: 2%;
+  width: 48%;
+  float: left;
+  display: flex; 
+justify-content: center;
+align-items: center; 
+/* border:1px solid red; */
+}
+.piceverypic{
+  width: 98%;
+  float: left;
+  height:150px;
+  /* border:1px solid red; */
+    display: flex; 
+  justify-content: center;
+  align-items: center; 
+}
+.deleteview{
+ height: 30rpx;
+width: 30rpx;
+position: relative;
+right: 5px;
+top: -48px;
+
+}
+.previewPic{
+width: 356rpx;
+height: 268rpx;
+border-radius: 2px;
+
+}
+
+.deletePic{
+height: 35rpx;
+width: 35rpx;
+position: relative;
+right: 1px;
+top: -66px;
+
+}

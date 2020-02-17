@@ -30,63 +30,69 @@ Page({
           code: res.code
         })
         var that = this;
-        //获取laravel的token请求后端api
         request({
-          url: that.data.WEB + '/oauth/token',
-          data: {
-            grant_type: 'client_credentials',
-            client_id: '3',
-            client_secret: 'vGOdopoxPHn93OoGK78wbbMstauiJmv8gHec7l1l',
-          },
+          url: that.data.WEB + '/api/register',
           method: 'post',
+          data: {
+            name: that.data.name,
+            password: that.data.password,
+            code: that.data.code,
+            role: that.data.role,
+          },
           header: {
-            'content-type': 'application/json; charset=UTF-8'
+            'content-type': 'application/json',
+            // Authorization: "Bearer " + accesstoken
           }
-        }).then(res=>{
-          // console.log(res.data.access_token)
-          var accesstoken = res.data.access_token
-          request({
-            url: that.data.WEB + '/api/register',
-              method: 'post',
-              data: {
-                name: that.data.name,
-                password: that.data.password,
-                code: that.data.code,
-                role: that.data.role,
-              },
-              header: {
-                'content-type': 'application/json',
-                Authorization: "Bearer " + accesstoken
-              }
-          }).then(res=>{
-            console.log(res.data)
-            if (res.data.res == 'success') {
-              wx.showToast({
-                title: '商家注册成功请等待审核',
-                icon: 'success',
-                duration: 2000
-              })
-              wx.reLaunch({
-                url: '/pages/navigate/navigate',
-                //弹出等待审核窗口
-              })
-            } else if (res.data.res == 'repeat') {
-              wx.showToast({
-                title: '用户已注册',
-                icon: 'success',
-                duration: 2000
-              })
-              wx.reLaunch({
-                url: '/pages/navigate/navigate',
-                //弹出等待审核窗口
-              })
-            }
-          }).catch(err=>{
-            console.log(err)
-          })
-        }).catch(err=>{
+        }).then(res => {
+          console.log(res.data)
+          if (res.data.res == 'success') {
+            wx.showToast({
+              title: '商家注册成功请等待审核',
+              icon: 'success',
+              duration: 2000
+            })
+            wx.reLaunch({
+              url: '/pages/navigate/navigate',
+              //弹出等待审核窗口
+            })
+            wx.showToast({
+              title: '等待审核',
+              icon: 'success',
+              duration: 2000
+            })
+          } else if (res.data.res == 'repeat') {
+            wx.showToast({
+              title: '用户已注册',
+              icon: 'success',
+              duration: 2000
+            })
+            wx.reLaunch({
+              url: '/pages/navigate/navigate',
+              //弹出等待审核窗口
+            })
+          }
+        }).catch(err => {
           console.log(err)
         })
+        //获取laravel的token请求后端api
+        // request({
+        //   url: that.data.WEB + '/oauth/token',
+        //   data: {
+        //     grant_type: 'client_credentials',
+        //     client_id: '3',
+        //     client_secret: 'vGOdopoxPHn93OoGK78wbbMstauiJmv8gHec7l1l',
+        //   },
+        //   method: 'post',
+        //   header: {
+        //     'content-type': 'application/json; charset=UTF-8'
+        //   }
+        // }).then(res=>{
+        //   // console.log(res.data.access_token)
+        //   var accesstoken = res.data.access_token
+     
+        // }).catch(err=>{
+        //   console.log(err)
+        // })
       
       }
     })

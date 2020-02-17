@@ -1,0 +1,31 @@
+<!--pages/user/companyinfo/companyinfo.wxml-->
+<view class="main">
+  <view class="mainMar" wx:if="{{showFlage==false}}">
+      <van-cell-group>
+      <van-cell title="公司具体信息" border="false" value="" /> 
+    </van-cell-group>
+    <view class="infoview">
+      <span class="textareaView">{{companyinfodata.companyinfo}}</span>
+    </view>
+    <van-cell-group>
+      <van-cell title="公司相关证明材料" >
+      </van-cell>
+    </van-cell-group>
+    <block wx:for="{{companyinfodata.proveinfo}}" wx:key="index">
+        <view class="picevery">
+            <image class="previewPic"src="{{WEB}}/{{item}}"></image>
+        </view>
+    </block>
+    <view class="foot">
+    </view>
+
+     
+
+   
+    </view>
+
+  <view class="mainMar" wx:if="{{showFlage==true}}">
+     <view class="nullcontent">暂无数据</view>
+
+  </view>
+</view>

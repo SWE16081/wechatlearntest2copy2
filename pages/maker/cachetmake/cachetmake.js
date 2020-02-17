@@ -14,7 +14,7 @@ Page({
     Height: app.globalData.Height,
     Width: app.globalData.Width,
     makecacheSwipertHeight: parseInt(app.globalData.Height * 0.27),//制作公章swiper view高度
-    makeScrollHeight: parseInt(app.globalData.Height * 0.45),//制作公章scroll-view view高度
+    makeScrollHeight: parseInt(app.globalData.Height * 0.40),//制作公章scroll-view view高度
     picHeight: parseInt(app.globalData.Height * 0.12),//添加公章中商品图片高度
     delWidth: parseInt(app.globalData.Width * 0.15),//删除区域宽度
     movableareaWdith: parseInt(app.globalData.Width-36),//movablearea区域宽度
@@ -25,17 +25,32 @@ Page({
     mainheight: parseInt(app.globalData.Height * 0.76),
     cachetkindData:[],//公章种类数据
     cachetData:[],//公章数据
+    addinfo:'全部',//添加公章时的提示信息
+  },
+  //查看全部系列公章
+  selAll(){
+    wx.setStorageSync('cachetkindid', '')
+    this.setData({
+      addinfo:'全部'
+    })
+    this.cachetData()
   },
 swiperonclick(event){
+  console.log(event)
   var cachetkindid = event.currentTarget.dataset.cachetkindid
+  var cakindname = event.currentTarget.dataset.cakindname
   //设置storage 防止页面刷新  纪录上一次点击的cachetkind数据
+  console.log('cakindname', cakindname)
   wx.setStorageSync('cachetkindid', cachetkindid)
+  this.setData({
+    addinfo: cakindname
+  })
   this.cachetkindRequest(cachetkindid)
 },
 //按公章种类查询公章数据
 cachetkindRequest(cachetkindid){
   var userid = wx.getStorageSync(this.data.Userid)
-  var accesstoken = wx.getStorageSync(this.data.Token)
+  // var accesstoken = wx.getStorageSync(this.data.Token)
   request({
     url: this.data.WEB + '/api/maker/selcachetbykind',
     method: 'post',
@@ -45,7 +60,7 @@ cachetkindRequest(cachetkindid){
     },
     header: {
       'content-type': 'application/json',
-      Authorization: "Bearer " + accesstoken
+      // Authorization: "Bearer " + accesstoken
     }
   }).then(res => {
       console.log('种类点击',res.data)
@@ -67,16 +82,16 @@ cachetkindRequest(cachetkindid){
   KinddataRequest() {
     var userid = wx.getStorageSync(this.data.Userid)
     console.log('user', userid)
-    var accesstoken = wx.getStorageSync(this.data.Token)
+    // var accesstoken = wx.getStorageSync(this.data.Token)
     request({
       url: this.data.WEB + '/api/maker/selcakind',
       method: 'post',
-      data: {
-        userid: userid
-      },
+      // data: {
+      //   userid: userid
+      // },
       header: {
         'content-type': 'application/json',
-        Authorization: "Bearer " + accesstoken
+        // Authorization: "Bearer " + accesstoken
       }
     }).then(res => {
       console.log('公章种类数据',res.data)
@@ -98,7 +113,7 @@ cachetkindRequest(cachetkindid){
     console.log('cachetkindid',cachetkindid)
     if (cachetkindid==''){
       var userid = wx.getStorageSync(this.data.Userid)
-      var accesstoken = wx.getStorageSync(this.data.Token)
+      // var accesstoken = wx.getStorageSync(this.data.Token)
       request({
         url: this.data.WEB + '/api/maker/selcachet',
         method: 'post',
@@ -107,7 +122,7 @@ cachetkindRequest(cachetkindid){
         },
         header: {
           'content-type': 'application/json',
-          Authorization: "Bearer " + accesstoken
+          // Authorization: "Bearer " + accesstoken
         }
       }).then(res => {
          if(res.data.status=='success'){
@@ -174,7 +189,7 @@ cachetMoveData(){
   //删除公章
 delcachet(e) {
   var cachetid = e.currentTarget.dataset.cachetid
-  var accesstoken = wx.getStorageSync(this.data.Token)
+  // var accesstoken = wx.getStorageSync(this.data.Token)
   var userid = wx.getStorageSync(this.data.Userid)
 
   request({
@@ -186,7 +201,7 @@ delcachet(e) {
     },
     header: {
       'content-type': 'application/json',
-      Authorization: "Bearer " + accesstoken
+      // Authorization: "Bearer " + accesstoken
     }
   }).then(res => {
     if (res.data.status == "success") {
@@ -235,7 +250,7 @@ cachetupdate(e){
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-
+    
   },
 
   /**

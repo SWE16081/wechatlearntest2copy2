@@ -35,7 +35,7 @@
     <view class="content">
       <scroll-view  class="cachetscroll" scroll-x="false" 
         scroll-y="true" style="height:{{cachetscrollHeight}}px">
-        <block wx:for="{{cachetaddList}}" wx:key="{{index}}">
+        <block wx:for="{{cachetaddList}}" wx:key="index">
               <view class="cachetMian" style="height:{{cachetMianheight}}px;"  >
               <view class="cachetMainMargin" >
             
@@ -67,7 +67,7 @@
     </van-cell-group>
       <scroll-view  class="cachetscroll" scroll-x="false" 
         scroll-y="true" style="height:{{cachetscrollHeight2}}px">
-        <block wx:for="{{cachetColorList}}" wx:key="{{index}}">
+        <block wx:for="{{cachetColorList}}" wx:key="index">
               <view class="cachetMian" style="height:{{cachetMianheight2}}px;"  >
               <view class="cachetMainMargin" >
                 <van-field
@@ -94,7 +94,7 @@
         </view>
         <scroll-view class="picpreview"scroll-x="false"  scroll-y="true" style="height:{{cachetprivewHeight}}px">
          <view class="scrollview">
-         <block wx:for="{{previewPicList}}" wx:key="{{index}}">
+         <block wx:for="{{previewPicList}}" wx:key="index">
               <view class="picevery" style="height:{{cachetprivewHeight}}px">
                 <!-- <view class="piceverypic">  -->
                   <image class="previewPic"src="{{item}}"></image>

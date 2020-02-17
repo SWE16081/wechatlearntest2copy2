@@ -36,53 +36,53 @@ Page({
         })
         var that = this;
         //获取laravel的token请求后端api
+        // request({
+        //   url: that.data.WEB + '/oauth/token',
+        //   data: {
+        //     grant_type: 'client_credentials',
+        //     client_id: '3',
+        //     client_secret: 'vGOdopoxPHn93OoGK78wbbMstauiJmv8gHec7l1l',
+        //   },
+        //   method: 'post',
+        //   header: {
+        //     'content-type': 'application/json; charset=UTF-8'
+        //   }
+        // }).then(res=>{
+        //   var accesstoken = res.data.access_token
+ 
+        // }).catch(err=>{
+        //   console.log(err)
+        // })
         request({
-          url: that.data.WEB + '/oauth/token',
-          data: {
-            grant_type: 'client_credentials',
-            client_id: '3',
-            client_secret: 'vGOdopoxPHn93OoGK78wbbMstauiJmv8gHec7l1l',
-          },
+          url: that.data.WEB + '/api/user/login',
           method: 'post',
+          data: {
+            code: that.data.code,
+          },
           header: {
-            'content-type': 'application/json; charset=UTF-8'
+            'content-type': 'application/json'
+            // Authorization: "Bearer " + accesstoken
           }
-        }).then(res=>{
-          var accesstoken = res.data.access_token
-          request({
-            url: that.data.WEB + '/api/user/login',
-            method: 'post',
-            data: {
-              code: that.data.code,
-            },
-            header: {
-              'content-type': 'application/json',
-              Authorization: "Bearer " + accesstoken
-            }
-          }).then(res=>{
-            // console.log(res.data)
-            if (res.data.res == 'success') {
-              wx.showToast({
-                title: '登录成功',
-                icon: 'success',
-                duration: 1000
-              })
-              // //将存储到storage中
-              wx.setStorageSync(that.data.Token, accesstoken)//同步存储
-              wx.setStorageSync(that.data.Role, 1)
-              wx.setStorageSync(that.data.Userid, res.data.userid)
-              wx.switchTab({
-                url: '/pages/user/home/home',
-                //弹出等待审核窗口
-              })
-            }
-          }).catch(err=>{
-            console.log(err)
-          })
-        }).catch(err=>{
+        }).then(res => {
+          // console.log(res.data)
+          if (res.data.res == 'success') {
+            wx.showToast({
+              title: '登录成功',
+              icon: 'success',
+              duration: 1000
+            })
+            // //将存储到storage中
+            // wx.setStorageSync(that.data.Token, accesstoken)//同步存储
+            wx.setStorageSync(that.data.Role, 1)
+            wx.setStorageSync(that.data.Userid, res.data.userid)
+            wx.switchTab({
+              url: '/pages/user/home/home',
+              //弹出等待审核窗口
+            })
+          }
+        }).catch(err => {
           console.log(err)
         })
-   
       }
     })
   },

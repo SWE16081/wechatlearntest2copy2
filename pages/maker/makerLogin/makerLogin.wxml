@@ -5,13 +5,14 @@
       <van-field
         value=""
         placeholder="帐号"
-        bind:blur="nameClick"
+        bind:input="nameClick"
       />
             <van-field
             type="password"
         value=""
         placeholder="密码"
-        bind:blur="passwordClick"
+        bind:input="passwordClick"
+        
       />
     </van-cell-group>
     <view class="foot"><button class="submitbtn" bindtap="submit">登录</button></view>

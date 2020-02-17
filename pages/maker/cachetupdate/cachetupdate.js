@@ -318,9 +318,11 @@ Page({
   affirm() {
     console.log('确认')
     var flage = this.judge()
+    console.log("判断",flage)
     if (flage) {
+
       var cachetid = this.data.cachetid
-      var accesstoken = wx.getStorageSync(this.data.Token)
+      // var accesstoken = wx.getStorageSync(this.data.Token)
       request({
         url: this.data.WEB + '/api/maker/delcachepicpath',
         method: 'post',
@@ -329,9 +331,10 @@ Page({
         },
         header: {
           'content-type': 'application/json',
-          Authorization: "Bearer " + accesstoken
+          // Authorization: "Bearer " + accesstoken
         }
       }).then(res => {
+        console.log("更新",res.data)
         if (res.data.status == 'success') {
           var userid = wx.getStorageSync(this.data.Userid)
           var uploadPicList = this.data.uploadPicList
@@ -359,7 +362,7 @@ Page({
               header: {
                 "Content-Type": "multipart/form-data",
                 'accept': 'application/json',
-                'Authorization': 'Bearer ' + accesstoken //若有token，此处换上你的token，没有的话省略
+                // 'Authorization': 'Bearer ' + accesstoken //若有token，此处换上你的token，没有的话省略
               },
               formData: formData,
               success(res) {
@@ -395,7 +398,7 @@ Page({
   KinddataRequest() {
     var userid = wx.getStorageSync(this.data.Userid)
     console.log('user', userid)
-    var accesstoken = wx.getStorageSync(this.data.Token)
+    // var accesstoken = wx.getStorageSync(this.data.Token)
     request({
       url: this.data.WEB + '/api/maker/selcakind2',
       method: 'post',
@@ -404,7 +407,7 @@ Page({
       },
       header: {
         'content-type': 'application/json',
-        Authorization: "Bearer " + accesstoken
+        // Authorization: "Bearer " + accesstoken
       }
     }).then(res => {
       if (res.data.status == 'success') {
@@ -422,7 +425,7 @@ Page({
   //公章数据请求
   cachetRequest(){
     var cachetid = this.data.cachetid
-    var accesstoken = wx.getStorageSync(this.data.Token)
+    // var accesstoken = wx.getStorageSync(this.data.Token)
     request({
       url: this.data.WEB + '/api/maker/selcachetby',
       method: 'post',
@@ -431,11 +434,11 @@ Page({
       },
       header: {
         'content-type': 'application/json',
-        Authorization: "Bearer " + accesstoken
+        // Authorization: "Bearer " + accesstoken
       }
     }).then(res => {
       if(res.data.status=='success'){
-        console.log('公章数据', res.data.result)
+        // console.log('公章数据', res.data.data)
         this.setData({
           cachetData: res.data.data,
           cachetKindInfo: res.data.data[0]['cakindname']
@@ -491,7 +494,7 @@ previewPicSet(){
   var uploadPicList = this.data.uploadPicList
   console.log('previewPicList', previewPicList)
   var cachetid = this.data.cachetid
-  var accesstoken = wx.getStorageSync(this.data.Token)
+  // var accesstoken = wx.getStorageSync(this.data.Token)
   var that=this
   var sum=0
   var len = previewPicList.length
@@ -502,7 +505,7 @@ previewPicSet(){
       method: 'post',
       header: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + accesstoken 
+        // 'Authorization': 'Bearer ' + accesstoken 
       },
       data: {
         cachetid: cachetid,
@@ -533,6 +536,12 @@ previewPicSet(){
  
  
 },
+//修改
+  update(){
+    wx.navigateTo({
+      url: '/pages/maker/makerorder/makerorder?index=0',
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */

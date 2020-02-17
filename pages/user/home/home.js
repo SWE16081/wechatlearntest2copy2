@@ -33,14 +33,9 @@ Page({
     //购物车底部弹出框显示flage
     shopcarFlage:false,
     //顶部swiper图片数据
-    swipevrData: 
-    [
-        { "src": '/static/pic/a.jpg' },
-        { "src": '/static/pic/a.jpg' },
-        { "src": '/static/pic/a.jpg' },
-    ],
+    swipevrData:  [],
       //公司相关介绍信息
-    information:' ',
+    information:'',
     cachetkindData:[],//公章种类数据
     cachet:[],//公章表数据
   
@@ -53,7 +48,7 @@ Page({
     picPathinput: '',
     numinput: 1,
     priceinput: 0,
-    cachetinfo:'',
+    cachetinfo:'',//公章刻字内容
     //要提交的cachetid,cachetkindid
     cachetid: -1,
     cachetkindid: -1,
@@ -70,17 +65,28 @@ Page({
     allprice:0,
     //底部购物栏显示判断flage
     shopcarshow:false,
-    shopcarData:[],//购物车数据
+    shopcarData:[],//购物车数据cachetInfo
+    activeNames:'',
+    // cachetKindGuide:'公章种类说明，包括这系列公章的用途',//公章种类说明
+
+  },
+
+  //更多信息
+  moreinfo(){
+    wx.navigateTo({
+      url: '/pages/user/companyinfo/companyinfo',
+    })
   },
   // 禁止底层页面滚动
   preventscroll() {
     return
   },
+
 //点击选择公章
-  onclick(event){
+cachetclick(event){
     var cachetkindid = event.currentTarget.dataset.cachetkindid
     //加载公章选择数据
-    var accesstoken = wx.getStorageSync(this.data.Token)
+    // var accesstoken = wx.getStorageSync(this.data.Token)
     request({
       url: this.data.WEB + '/api/user/selcadetail',
       method: 'post',
@@ -89,7 +95,7 @@ Page({
       },
       header: {
         'content-type': 'application/json',
-        Authorization: "Bearer " + accesstoken
+        // Authorization: "Bearer " + accesstoken
       }
     }).then(res => {
       if(res.data.status=='success'){
@@ -99,6 +105,9 @@ Page({
           cachet: result,
         })
         this.choosetrigger()
+        // var currentindex = this.data.currentindex
+        // console.log('公章解释', this.data.cachet[currentindex]['cachetExplain'])
+        // console.log('公章解释', this.data.cachet.currentindex)
       }else{
         console.log('暂无数据')
       }
@@ -107,6 +116,13 @@ Page({
       console.log(err)
     })
     
+  },
+  //公章详细信息
+  detailClick(event){
+    console.log("详细信息展示",event.detail)
+    this.setData({
+      activeNames: event.detail
+    });
   },
   //数组增加flage判断按钮是否选中
   arrayadd(data, name, value) {
@@ -301,10 +317,10 @@ Page({
     var befocolor = this.data.beforefocolor
     var affocolor = this.data.afterfocolor
     for (var i = 0; i < result.length; i++) {
-      // result[i]['cachetSize'] = this.arrayadd(result[i]['cachetSize'],
-      //   'sizebgColor', bebgcolor, afbgcolor);
-      // result[i]['cachetSize'] = this.arrayadd(result[i]['cachetSize'],
-      //   'sizefoColor', befocolor, affocolor);
+      result[i]['cachetSize'] = this.arrayadd(result[i]['cachetSize'],
+        'sizebgColor', bebgcolor, afbgcolor);
+      result[i]['cachetSize'] = this.arrayadd(result[i]['cachetSize'],
+        'sizefoColor', befocolor, affocolor);
       result[i]['cachetColor'] = this.arrayadd(result[i]['cachetColor'],
         'colorbgColor', bebgcolor);
       result[i]['cachetColor'] = this.arrayadd(result[i]['cachetColor'],
@@ -343,17 +359,18 @@ Page({
     console.log('数据初始化', this.data.cachet)
     console.log('数据初始化',result)
   },
-  onChange(event) {
+  cachetContent(event) {
+    console.log('正在输入',event.detail)
     this.setData({
       cachetinfo:event.detail
     })
 },
   //选择公章底部弹窗页面触发
   choosetrigger: function () {
-    //设置底部shopcarBar zindex的值--
-    this.setData({//设置定时器使得底部弹出框关闭的时候从shopcarBar上方消失
-      Zindex: 0
-    })
+    // //设置底部shopcarBar zindex的值--
+    // this.setData({//设置定时器使得底部弹出框关闭的时候从shopcarBar上方消失
+    //   Zindex: 0
+    // })
     var animationtest = wx.createAnimation({
       duration: 100,
       timingFunction: "liner", 
@@ -380,23 +397,13 @@ Page({
       this.setData({
         mainmodelshow: true
       });
-    
-    //
-    //按钮状态初始化
-    // if (this.data.windowShowcount == 1) {
       this.btnstatefirst()//按钮状态初始化
-      // this.setData({
-      //   windowShowcount: this.data.windowShowcount + 1
-      // })
-    // }
-
-    // console.log('change', this.data.cachet)
   },
   //选择公章底部弹窗页面关闭
   chooseclose: function () {
-    this.setData({
-      Zindex:2
-    })
+    // this.setData({
+    //   Zindex:2
+    // })
     var animationtest = wx.createAnimation({
       duration: 100,
       timingFunction: "ease", //线性 
@@ -440,6 +447,7 @@ Page({
     var colordata = this.data.colorinput
     var numdata = this.data.numinput
     var cachetinfo = this.data.cachetinfo
+    console.log("刻字内容", cachetinfo)
     if (kinddata == '') {
       console.log('sss')
       wx.showToast({
@@ -490,7 +498,7 @@ Page({
     if (judge) {
       // console.log('判断成功')
       var userid = wx.getStorageSync(this.data.Userid)
-      var accesstoken = wx.getStorageSync(this.data.Token)
+      // var accesstoken = wx.getStorageSync(this.data.Token)
       // console.log('ass', this.data.WEB + '/api/user/addshopcar')
       var cachetid = this.data.cachetid
       var cachetname = this.data.kindinput
@@ -501,7 +509,9 @@ Page({
       var price = this.data.priceinput
       var picpath = this.data.picPathinput
       var cachetinfo = this.data.cachetinfo
-      console.log(picpath)
+      console.log('userid', userid)
+      console.log('cachetname', cachetname)
+      console.log('WEB', this.data.WEB)
       request({
         url: this.data.WEB + '/api/user/addshopcar',
         method: 'post',
@@ -518,12 +528,12 @@ Page({
           picpath: picpath
         },
         header: {
-          'content-type': 'application/json',
-          Authorization: "Bearer " + accesstoken
+          'content-type': 'application/json'
+          // Authorization: "Bearer " + accesstoken
         }
       }).then(res => {
-        console.log(res.data)
-        if (res.data.res == 'success') {
+        console.log("加入购物车",res)
+        if (res.data.status == 'success') {
           console.log('seccuess')
           // this.onShow()
           this.getShopcarData()
@@ -537,7 +547,13 @@ Page({
             priceinput: 0,
             // shopcarFlage:true,
           })
+     
           this.chooseclose()
+          wx.showToast({
+            title: '选择成功',
+            icon: 'success',
+            duration: 1000
+          })
         }
       }).catch(err => {
         console.log(err)
@@ -598,7 +614,7 @@ Page({
     var index = e.currentTarget.dataset.index
     var number = 1
     var shopcarid = shopdata[index]['shopcarid']
-    var accesstoken = wx.getStorageSync(this.data.Token)
+    // var accesstoken = wx.getStorageSync(this.data.Token)
     var allprice = this.data.allprice
     request({
       url: this.data.WEB + '/api/user/scChangeNum',
@@ -610,7 +626,7 @@ Page({
       },
       header: {
         'content-type': 'application/json',
-        Authorization: "Bearer " + accesstoken
+        // Authorization: "Bearer " + accesstoken
       }
     }).then(res => {
       if (res.data.res == "success") {
@@ -626,7 +642,7 @@ Page({
     var index = e.currentTarget.dataset.index
     var number = 1
     var shopcarid = shopdata[index]['shopcarid']
-    var accesstoken = wx.getStorageSync(this.data.Token)
+    // var accesstoken = wx.getStorageSync(this.data.Token)
     var allprice = this.data.allprice
     request({
       url: this.data.WEB + '/api/user/scChangeNum',
@@ -638,7 +654,7 @@ Page({
       },
       header: {
         'content-type': 'application/json',
-        Authorization: "Bearer " + accesstoken
+        // Authorization: "Bearer " + accesstoken
       }
     }).then(res => {
       if (res.data.res == "success") {
@@ -667,14 +683,14 @@ orderbuy(){
       })
     } else {
       wx.navigateTo({
-        url: '/pages/user/writeorder/writeorder?' ,
+        url: '/pages/user/writeorder/writeorder' ,
       })
     }
 },
 //清空购物车
 delAll(){
   var userid = wx.getStorageSync(this.data.Userid)
-  var accesstoken = wx.getStorageSync(this.data.Token)
+  // var accesstoken = wx.getStorageSync(this.data.Token)
   request({
     url: this.data.WEB + '/api/user/alldelete2',
     method: 'post',
@@ -683,7 +699,7 @@ delAll(){
     },
     header: {
       'content-type': 'application/json',
-      Authorization: "Bearer " + accesstoken
+      // Authorization: "Bearer " + accesstoken
     }
   }).then(res => {
     if (res.data.res == "success") {
@@ -730,8 +746,9 @@ dataset(){
 },
   //请求购物车数据
   getShopcarData(){
+
     var userid = wx.getStorageSync(this.data.Userid)
-    var accesstoken = wx.getStorageSync(this.data.Token)
+    // var accesstoken = wx.getStorageSync(this.data.Token)
     request({
       url: this.data.WEB + '/api/user/selshopcar2',
       method: 'post',
@@ -740,7 +757,7 @@ dataset(){
       },
       header: {
         'content-type': 'application/json',
-        Authorization: "Bearer " + accesstoken
+        // Authorization: "Bearer " + accesstoken
       }
     }).then(res => {
 
@@ -757,12 +774,39 @@ dataset(){
       console.log(err)
     })
   },
+  //公司相关信息请求
+  companydata(){
+    var userid = wx.getStorageSync(this.data.Userid)
+    // var accesstoken = wx.getStorageSync(this.data.Token)
+    request({
+      url: this.data.WEB + '/api/user/selmakerInfo',
+      method: 'post',
 
+      header: {
+        'content-type': 'application/json',
+      }
+    }).then(res => {
+      console.log('asdasd',res.data.data[0])
+      if(res.data.status=='success'){
+        var companyinfo = res.data.data[0]['companyinfo']
+        if (companyinfo.length > 50) {
+          companyinfo=companyinfo.substring(0, 50) + '...'
+        } 
+        this.setData({
+          information:companyinfo,
+          swipevrData: res.data.data[0]['proveinfo']
+        })
+      }
+  
+    }).catch(err => {
+      console.log(err)
+    })
+  },
   //请求公章种类数据
   updatedata: function () {
     var userid=wx.getStorageSync(this.data.Userid)
     console.log('user',userid)
-    var accesstoken = wx.getStorageSync(this.data.Token)
+    // var accesstoken = wx.getStorageSync(this.data.Token)
     request({
       url: this.data.WEB + '/api/maker/selcakind',
       method: 'post',
@@ -771,7 +815,7 @@ dataset(){
       // },
       header: {
         'content-type': 'application/json',
-        Authorization: "Bearer " + accesstoken
+        // Authorization: "Bearer " + accesstoken
       }
     }).then(res => {
       if(res.data.status=='success'){
@@ -801,6 +845,8 @@ dataset(){
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    //公司相关信息请求
+    this.companydata()
     //请求公章种类数据
     this.updatedata()
     // //添加购物车成功，请求购物车数据

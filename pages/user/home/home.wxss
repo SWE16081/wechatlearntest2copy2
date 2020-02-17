@@ -146,7 +146,7 @@ align-items: center; */
     float: left;
    /* text-align: center; */
 /* border:1px solid red; */
-width: 30%;
+width: 29%;
 height: 38%;
 }
 .btnview{
@@ -215,7 +215,7 @@ border-radius: 10px;
    margin-right: 2%;
    /* opacity: 0; */
    /*  */
-   top:120px;
+   top:80px;
    background-color: #ffffff;
     z-index:1;
     display: flex;
@@ -278,6 +278,15 @@ height: 15%;
 .choosecontpicimg{
   height: 100%;
   width: 100%;
+  border-radius: 3px
+}
+/* 公章详细信息展示 */
+/* .cachetDetail{
+   margin-top:40rpx;
+} */
+/*具体图片swiper样式*/
+.detailswiper{
+  height:600rpx;
 }
 .choosecontmiddleswiper{
    height: 65%;
@@ -303,7 +312,7 @@ height: 15%;
   margin-top: 2%; 
 }
 .kindtext{
-  margin-top:10%;
+  /* margin-top:10%; */
 
 }
 .kindcont,.sizecont,.colorcont{

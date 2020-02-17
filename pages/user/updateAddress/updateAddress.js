@@ -3828,7 +3828,7 @@ Page({
   },
   //姓名change,获取填写的姓名
   nameChange(event){
-    this.data.nameinput=event.detail.value
+    this.data.nameinput=event.detail
     this.setData({
       nameinput:this.data.nameinput
     })
@@ -3837,14 +3837,14 @@ Page({
   phoneChange(event){
     console.log('光标移开')
     console.log(event.detail)
-    this.data.phoneinput=event.detail.value
+    this.data.phoneinput=event.detail
     this.setData({
       phoneinput:this.data.phoneinput
     })
   },
   //详细地址change,获得填写的详细地址
   addressChange(event){
-    this.data.addressinput=event.detail.value
+    this.data.addressinput=event.detail
     this.setData({
       addressinput:this.data.addressinput
     })
@@ -3891,7 +3891,7 @@ Page({
   //删除
   delete(){
     var addressid = this.data.addressid
-    var accesstoken = wx.getStorageSync(this.data.Token)
+    // var accesstoken = wx.getStorageSync(this.data.Token)
     request({
       url: this.data.WEB + '/api/user/DeleteAddByid',
       method: 'post',
@@ -3900,7 +3900,7 @@ Page({
       },
       header: {
         'content-type': 'application/json',
-        Authorization: "Bearer " + accesstoken
+        // Authorization: "Bearer " + accesstoken
       }
     }).then(res => {
       if (res.data.res == 'success') {
@@ -3926,7 +3926,7 @@ Page({
       var checked=this.data.checked
       var userid=wx.getStorageSync(this.data.Userid)
       var addressid = this.data.addressid
-      var accesstoken=wx.getStorageSync(this.data.Token)
+      // var accesstoken=wx.getStorageSync(this.data.Token)
       // cityinput = this.citydataDone(cityinput)
       console.log('cityinput',cityinput)
       request({
@@ -3943,7 +3943,7 @@ Page({
         },
         header: {
           'content-type': 'application/json',
-          Authorization: "Bearer " + accesstoken
+          // Authorization: "Bearer " + accesstoken
         }
       }).then(res=>{
         if(res.data.res=='success'){
@@ -4034,7 +4034,7 @@ Page({
    */
   onShow: function () {
     var addressid=this.data.addressid
-    var accesstoken=wx.getStorageSync(this.data.Token)
+    // var accesstoken=wx.getStorageSync(this.data.Token)
     request({
       url: this.data.WEB + '/api/user/SelAddByid',
       method: 'post',
@@ -4043,7 +4043,7 @@ Page({
       },
       header: {
         'content-type': 'application/json',
-        Authorization: "Bearer " + accesstoken
+        // Authorization: "Bearer " + accesstoken
       }
     }).then(res => {
       console.log(res.data)

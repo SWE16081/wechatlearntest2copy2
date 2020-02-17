@@ -1,0 +1,36 @@
+<!--pages/maker/companyinfo/companyinfo.wxml-->
+<view class="main">
+  <view class="mainMar">
+    <van-cell-group>
+      <van-cell title="公司具体信息" border="false" value="" /> 
+    </van-cell-group>
+    <view class="infoview">
+      <textarea bind:input="infoinput"
+      class="textareaView"
+      auto-focus="true" placeholder-style="font-size:14px;"
+      placeholder="请填写公司的详情介绍" />
+    </view>
+    <van-cell-group>
+      <van-cell title="公司相关证明材料" >
+       <van-icon slot="right-icon" name="plus" bindtap="addprovepic" size="20px"class="custom-icon" />
+      </van-cell>
+    </van-cell-group>
+    <view class="proveinfo">
+     <scroll-view class="picpreview"scroll-x="false" scroll-y="true" >
+         <view class="scrollview">
+         <block wx:for="{{previewPicList}}" wx:key="index">
+              <view class="picevery">
+                  <image class="previewPic"src="{{item}}"></image>
+                  <image class="deletePic" src="/static/pic/windowback.png" bindtap="delPrivewPic" data-index="{{index}}"></image>
+              </view>
+          </block>
+         </view>
+
+        </scroll-view>
+    </view>
+    <view class="foot">
+     <button class="subbtn" bindtap="affirm">确认     </button>
+    </view>
+  </view>
+</view>
+

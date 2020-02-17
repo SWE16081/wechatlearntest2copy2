@@ -5,12 +5,12 @@
       <van-field
         value=""
         placeholder="公章种类名称"
-        bind:blur="NameClick"
+        bind:input="NameClick"
       />
             <van-field
         value=""
         placeholder="公章种类说明"
-        bind:blur="ExplainClick"
+        bind:input="ExplainClick"
       />
     </van-cell-group>
     <view class="foot"><button class="submitbtn" bindtap="affirm">确认</button></view>

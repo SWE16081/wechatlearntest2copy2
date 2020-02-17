@@ -22,14 +22,16 @@ Page({
   },
   //公章种类名称点击
   NameClick(event) {
-    var cachetkindname = event.detail.value
+    console.log("公章种类名称点击",event.detail)
+    var cachetkindname = event.detail
     this.setData({
       cachetkindname: cachetkindname
     })
   },
   //公章说明点击
   ExplainClick(event) {
-    var cachetexplain = event.detail.value
+    console.log("公章说明",event)
+    var cachetexplain = event.detail
     this.setData({
       cachetexplain: cachetexplain
     })
@@ -40,9 +42,13 @@ Page({
     var flage = this.jude()
     if (flage) {
       var cachetkindid = this.data.cachetkindid
-      var accesstoken = wx.getStorageSync(this.data.Token)
+      // var accesstoken = wx.getStorageSync(this.data.Token)
       var cachetkindname = this.data.cachetkindname
       var cachetexplain = this.data.cachetexplain
+      console.log("cachetkindid", cachetkindid)
+      console.log("cachetkindname", cachetkindname)
+      console.log("cachetexplain", cachetexplain)
+      console.log("修改种类")
       request({
         url: this.data.WEB + '/api/maker/updatecakind',
         method: 'post',
@@ -53,9 +59,10 @@ Page({
         },
         header: {
           'content-type': 'application/json',
-          Authorization: "Bearer " + accesstoken
+          // Authorization: "Bearer " + accesstoken
         }
       }).then(res => {
+        console.log(res.data)
         if (res.data.status == 'success') {
           wx.showToast({
             title: '修改成功',
@@ -68,7 +75,7 @@ Page({
           }, 500);
         }
       }).catch(err => {
-        consol.log(err)
+        console.log(err)
       })
     }
   },
@@ -83,7 +90,7 @@ Page({
       return false
     } else if (this.data.cachetexplain == '') {
       wx.showToast({
-        title: '公章种类名称不能为空',
+        title: '公章种类说明不能为空',
         icon: 'none',
         duration: 1000
       })
@@ -100,7 +107,7 @@ Page({
     this.setData({
       cachetkindid: cachetkindid
     })
-    var accesstoken = wx.getStorageSync(this.data.Token)
+    // var accesstoken = wx.getStorageSync(this.data.Token)
     request({
       url: this.data.WEB + '/api/maker/selcakindby',
       method: 'post',
@@ -109,14 +116,15 @@ Page({
       },
       header: {
         'content-type': 'application/json',
-        Authorization: "Bearer " + accesstoken
+        // Authorization: "Bearer " + accesstoken
       }
     }).then(res => {
-      if (res.data.res == 'success') {
+      console.log("更新数据",res.data)
+      if (res.data.status == 'success') {
        this.setData({
-         cachetkind:res.data.result,
-         cachetkindname: res.data.result[0]['cakindname'],
-         cachetexplain: res.data.result[0]['cachetExplain'],
+         cachetkind:res.data.data,
+         cachetkindname: res.data.data[0]['cakindname'],
+         cachetexplain: res.data.data[0]['cachetExplain'],
        })
   
       }

@@ -50,7 +50,7 @@ Page({
  */
   onLoad: function (options) {
     // console.log(options)
-    var accesstoken = wx.getStorageSync(this.data.Token)
+    // var accesstoken = wx.getStorageSync(this.data.Token)
     request({
       url: this.data.WEB + '/api/user/selcadetail',
       method: 'post',
@@ -59,7 +59,7 @@ Page({
       },
       header: {
         'content-type': 'application/json',
-        Authorization: "Bearer " + accesstoken
+        // Authorization: "Bearer " + accesstoken
       }
     }).then(res => {
       var result = res.data
@@ -466,7 +466,7 @@ Page({
     if(judge){
       // console.log('判断成功')
       var userid=wx.getStorageSync(this.data.Userid)
-      var accesstoken = wx.getStorageSync(this.data.Token)
+      // var accesstoken = wx.getStorageSync(this.data.Token)
       // console.log('ass', this.data.WEB + '/api/user/addshopcar')
       var cachetid = this.data.cachetid
       var cachetname = this.data.kindinput
@@ -494,7 +494,7 @@ Page({
         },
         header:{
           'content-type':'application/json',
-          Authorization:"Bearer "+accesstoken
+          // Authorization:"Bearer "+accesstoken
         }
       }).then(res=>{
         console.log(res.data)

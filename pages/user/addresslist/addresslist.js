@@ -57,7 +57,7 @@ Page({
    */
   onShow: function () {
     var userid = wx.getStorageSync(this.data.Userid)
-    var accesstoken = wx.getStorageSync(this.data.Token)
+    // var accesstoken = wx.getStorageSync(this.data.Token)
     request({
       url: this.data.WEB + '/api/user/SelAddress',
       method: 'post',
@@ -66,14 +66,26 @@ Page({
       },
       header: {
         'content-type': 'application/json',
-        Authorization: "Bearer " + accesstoken
+        // Authorization: "Bearer " + accesstoken
       }
     }).then(res => {
-
-      console.log(res.data)
-      this.setData({
-        address: res.data,
-      })
+      console.log('地址',res.data)
+     if(res.data.status=='success'){
+    
+       this.setData({
+         address: res.data.data,
+       })
+     }else{
+       this.setData({
+         address: res.data.data,
+       })
+       wx.showToast({
+         title: '暂无数据',
+         icon:'none',
+         duration:1000
+       })
+     }
+   
     }).catch(err => {
       console.log(err)
     })

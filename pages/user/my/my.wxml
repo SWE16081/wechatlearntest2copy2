@@ -1,25 +1,27 @@
 <!--pages/user/my/my.wxml-->
  <view class="header">
-   <view class="headerLeft">
-     <image class="headpic" src="/static/pic/a.jpg"></image>
-   </view>
-   <view class="headerRight"></view>
+ 
+     <!-- <image class="headpic" src="{{userpic}}"></image> -->
+     <open-data class="headpic" type="userAvatarUrl"></open-data>
+     <open-data  class="username"type="userNickName"></open-data>
+
  </view>
 <view class="order">
     <van-cell title="我的订单" is-link value="查看全部订单" bindtap="seeAllorder"/>
-    <van-grid clickable="true">
+    <!-- gutter属性设置格子之间的距离 -->
+    <van-grid clickable="true" gutter="" column-num="3">
     <van-grid-item icon="/static/pic/waitpay.png" link-type="navigateTo" 
     url="/pages/user/order/order?index=1"text="待付款" info="{{waitPay}}" />
     <van-grid-item icon="/static/pic/waitsend.png"link-type="navigateTo" 
     url="/pages/user/order/order?index=2" text="待发货" info="{{waitSend}}" />
     <van-grid-item icon="/static/pic/waitget.png" link-type="navigateTo"
     url="/pages/user/order/order?index=3" text="待收货" info="{{waitGet}}" />
-    <van-grid-item icon="/static/pic/comment.png" link-type="navigateTo"
-    url="/pages/user/order/order?index=4" info="{{waitComment}}"text="评价" />
+    <!-- <van-grid-item icon="/static/pic/comment.png" link-type="navigateTo"
+    url="/pages/user/order/order?index=4" info="{{waitComment}}"text="评价" /> -->
   </van-grid> 
 </view>
 <view class="other">
-<van-cell title="个人设置" is-link />
+<van-cell title="修改地址" is-link bindtap="updateAddress"/>
 <van-cell title="帮助" is-link />
 <van-cell title="反馈" is-link />
 <van-cell title="退出登录" is-link  bindtap="dropLogin"/>

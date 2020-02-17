@@ -4,9 +4,9 @@
   <view class="head">
     <swiper class="headswiper" indicator-dots="false" autoplay="true" style="height:{{swiperHeight}}px"
     duration="1000" indicator-active-color="#ffffff">
-      <block wx:for="{{swipevrData}}" wx:key="{{index}}">
+      <block wx:for="{{swipevrData}}" wx:key="index">
           <swiper-item>
-            <image class="swiperpic" src="{{item.src}}" mode="aspectFill" ></image>
+            <image class="swiperpic" src="{{WEB}}/{{item}}" mode="aspectFill" ></image>
           </swiper-item>
       </block>
     </swiper>
@@ -17,7 +17,7 @@
           <view class="informationMar">
             <view class="inforup">
               <view class="inforupLeft">相关信息</view>
-              <view class="inforupRight">
+              <view class="inforupRight" bindtap="moreinfo">
                  <text decode="true">更多</text>
                 <image class="inforupRightpic"src="/static/pic/inforUpdate.png" ></image>
               </view>
@@ -34,11 +34,11 @@
             </view>
             <view class="makedown">
               <swiper class="makeswiper" indicator-dots	indicator-active-color="#38c172" >
-              <block wx:for="{{cachetkindData}}" wx:key="{{index}}">
+              <block wx:for="{{cachetkindData}}" wx:key="index">
                   <swiper-item>
-                      <block wx:for="{{item}}" wx:for-item="itemname" wx:for-index="itemindex"wx:key="{{itemindex}}">
+                      <block wx:for="{{item}}" wx:for-item="itemname" wx:for-index="itemindex"wx:key="itemindex">
                         <view class="makedownbtn">
-                        <span class="btnview" bindtap="onclick" 
+                        <span class="btnview" bindtap="cachetclick" 
                         data-cachetkindid="{{itemname.cachetKindid}}">{{itemname.cakindname}}</span>
                         </view>
                       </block>
@@ -52,7 +52,7 @@
     
   </view>
  </view> 
-  <!-- 模态框 -->
+    <!-- 模态框 -->
     <view class="mainmodel" wx-if="{{mainmodelshow}}"  bindtap="chooseclose" style="height:{{Height}}px"
       catchtouchmove="preventscroll">
     </view>
@@ -61,8 +61,10 @@
          style="height:{{cachetModelHeight}}px;">
        <view class="chooseconthead">
             <view class="choosecontpic">
-              <image class="choosecontpicimg" src="{{WEB}}/{{cachet[currentindex].cachetPicPath[0]}}"></image>
+              <image class="choosecontpicimg" bindtap="picCheck" 
+              src="{{WEB}}/{{cachet[currentindex].cachetPicPath[0]}}"></image>
             </view>
+            
             <view class="chooseconinfo">
             <view class="chooseconinfospace"></view>
               <view class="choosecontinfoprice">
@@ -77,35 +79,58 @@
             </view>
             
        </view>
+     
        <scroll-view class="choosecontmiddleswiper" scroll-y="true" scroll-x="false">
+       
           <view class="choosecontmiddle">
-          
-              <view class="kindtext">种类</view>
+              <view class="cachetDetail">
+                  <van-collapse value="{{ activeNames }}"bind:change="detailClick">
+                    <van-collapse-item title="公章详情" name="1" >
+                      {{cachet[currentindex].cachetExplain}}
+                    </van-collapse-item>
+                      <van-collapse-item title="公章图片" name="2" >                        
+                        <swiper class="detailswiper" indicator-dots="false" 
+                          autoplay="true" 
+                          duration="1000" indicator-active-color="#ffffff">
+                        <block wx:for="{{cachet[currentindex].cachetPicPath}}" wx:key="index">
+                            <swiper-item>
+                              <image class="swiperpic" src="{{WEB}}/{{item}}" mode="aspectFill" ></image>
+                            </swiper-item>
+                        </block>
+                      </swiper>
+                    </van-collapse-item>
+                </van-collapse>
+              </view>
+              <!-- <view class="kindtext">种类</view> -->
+              <van-cell title="种类" value="" />
               <view class="kindcont">
-                <block wx:for="{{cachet}}" wx:key="{{index}}">
+                <block wx:for="{{cachet}}" wx:key="index">
                 <view class="kindbtn">
                   <button size="mini" bindtap="kindchange" style="background-color:{{item.namebgColor}}; color:{{item.namefoColor}};"
                    data-index="{{index}}" >{{item.cachettagname}}</button>
                 </view>              
                 </block>
               </view>
-               <view class="sizetext">尺寸</view>
+               <!-- <view class="sizetext">尺寸</view> -->
+              <van-cell title="尺寸" value="" />
               <view class="sizecont">
-                  <block wx:for="{{cachet[currentindex]['cachetSize']}}" wx:key="{{index}}">
+                  <block wx:for="{{cachet[currentindex]['cachetSize']}}" wx:key="index">
                     <view class="sizebtn">
                       <button size="mini" bindtap="sizechange" data-index="{{index}}" style="background-color:{{item.sizebgColor}}; color:{{item.sizefoColor}};">{{item.size}}</button>
                     </view> 
                 </block>
               </view>
-              <view class="colortext">颜色分类</view>
+              <!-- <view class="colortext">颜色分类</view> -->
+              <van-cell title="颜色分类" value="" />
               <view class="colorcont">
-                  <block wx:for="{{cachet[currentindex].cachetColor}}" wx:key="{{index}}">
+                  <block wx:for="{{cachet[currentindex].cachetColor}}" wx:key="index">
                     <view class="colorbtn">
                       <button size="mini" bindtap="colorchange" data-index="{{index}}"style="background-color:{{item.colorbgColor}}; color:{{item.colorfoColor}};">{{item.color}}</button>
                     </view> 
                 </block>
               </view>
-                 <view class="colortext">刻字内容</view>
+                 <!-- <view class="colortext">刻字内容</view> -->
+              <van-cell title="刻字内容" value="" />
               <view class="colorcont">
 
               <van-cell-group>
@@ -113,12 +138,12 @@
                   value="{{ value }}"
                   placeholder="请输入刻字内容*一般为公司名或其他"
                   border="{{ false }}"
-                  bind:change="onChange"
+                  bind:change="cachetContent"
                 />
               </van-cell-group>
               </view>
             <view class="choosecontmiddlenum">
-               <view class="numleft">购买数量</view>
+               <view class="numleft"><van-cell title="购买数量" value="" /></view>
                <view class="numright">
                  <button size="mini" bindtap="nummuni">-</button>
                  {{numinput}}
@@ -129,8 +154,7 @@
        </scroll-view> 
        <view class="choosecontfootmargin">
          <view class="choosecontfoot">
-           <view class="chcontfoshopcar"><button class="chcontfoshopcarbtn" bindtap="affirm">确认</button></view>
-            
+           <view class="chcontfoshopcar"><button class="chcontfoshopcarbtn" bindtap="affirm">确认</button></view>           
          </view>
        </view>
 
@@ -164,7 +188,7 @@
       </view>
 
       <scroll-view class="shopcarModelDown" scroll-x="false" scroll-y="true">
-        <block wx:for="{{shopcarData}}" wx:key="{{index}}">
+        <block wx:for="{{shopcarData}}" wx:key="index">
         <view class="shoplistMargin">
             <view class="shoplist">
             <view class="shoplistLeft">

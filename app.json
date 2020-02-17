@@ -1,6 +1,6 @@
 {
   "pages": [
- 
+  
     "pages/navigate/navigate",
     "pages/user/home/home",
     "pages/user/kind/kind",
@@ -12,6 +12,7 @@
     "pages/user/addAddress/addAddress",
      "pages/user/addresslist/addresslist",
      "pages/user/updateAddress/updateAddress",
+     "pages/user/companyinfo/companyinfo",
    "pages/user/writeorder/writeorder",
     "pages/logs/logs",
     "pages/maker/makerRegister/makerRegister",
@@ -27,6 +28,9 @@
     "pages/maker/cachetkindupdate/cachetkindupdate",
       "pages/maker/makerorder/makerorder",
       "pages/maker/orderdetail/orderdetail",
+  "pages/maker/companyinfo/companyinfo",
+  "pages/maker/companyinfoshow/companyinfoshow",
+  "pages/maker/updatecompanyinfo/updatecompanyinfo",
     "pages/networktest/networktest"
  
   ],
@@ -79,7 +83,9 @@
       "van-sidebar-item": "/miniprogram_npm/vant-weapp/sidebar-item/index",
       "van-tabbar": "/miniprogram_npm/vant-weapp/tabbar/index",
       "van-tabbar-item": "/miniprogram_npm/vant-weapp/tabbar-item/index",
-      "van-icon": "/miniprogram_npm/vant-weapp/icon/index"
+      "van-icon": "/miniprogram_npm/vant-weapp/icon/index",
+    "van-collapse": "/miniprogram_npm/vant-weapp/collapse/index",
+    "van-collapse-item": "/miniprogram_npm/vant-weapp/collapse-item/index"
   }
  
 }

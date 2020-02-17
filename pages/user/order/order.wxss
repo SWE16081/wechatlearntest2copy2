@@ -50,7 +50,7 @@ page{
     display: flex;
   align-items: center;
   justify-content: flex-end;
-  color:rgba(255, 51, 0, 0.87);
+  color:#38c172;
 }
 .orderLeft{
  display: flex;
@@ -123,11 +123,28 @@ page{
   /* width: 50px; */
   font-size: 13px;
   background-color: #ffffff;
-  color:rgba(255, 51, 0, 0.87);
-  border:1px solid rgba(255, 51, 0, 0.87);
+  color:#38c172;
+  border:1px solid #38c172;
   border-radius: 10px;
    display:flex;
   align-items: center;
   justify-content: center;
   margin-right: 2px;
+}
+.otherdownbtn2{
+  height: 25px;
+  /* width: 50px; */
+  font-size: 13px;
+  background-color: #ffffff;
+  color:#38c172;
+  border:1px solid #38c172;
+  border-radius: 10px;
+   display:flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 16rpx;
+}
+.orderbtn{
+  display:flex;
+  flex-direction:row;
 }

@@ -8,7 +8,7 @@
   />
    <scroll-view class="makeScroll" indicator-dots="true"	scroll-x="false" scroll-y="true" 
    indicator-active-color="#38c172" style="height:{{makeScrollHeight}}px;">
-      <block wx:for="{{cachetKindData}}" wx:key="{{index}}">
+      <block wx:for="{{cachetKindData}}" wx:key="index">
         <view class="makeScroll-item">
           <movable-area class="cachetarea"style="height:{{cachetHeight}}px;width:{{movableareaWdith}}px">
             <movable-view class="cachetview" style="height:{{cachetHeight}}px;width:{{movableViewWidth}}px"
@@ -42,6 +42,7 @@
           </movable-area>
         </view>
       </block>
+      <view class="scrollFoot"></view>
    </scroll-view>
  
  </view>

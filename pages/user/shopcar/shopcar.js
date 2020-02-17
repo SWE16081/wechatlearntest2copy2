@@ -32,7 +32,7 @@ Page({
   kindchooseChange(e) {
     // console.log(e.detail.value)
     var fatherindex = e.currentTarget.dataset.fatherindex//外层数组索引
-    var accesstoken = wx.getStorageSync(this.data.Token)
+    // var accesstoken = wx.getStorageSync(this.data.Token)
     var userid = wx.getStorageSync(this.data.Userid)
     var data = this.data.shopcarData
     var cachetKindid = data[fatherindex]['cachetKindid']
@@ -68,7 +68,7 @@ Page({
       },
       header: {
         'content-type': 'application/json',
-        Authorization: "Bearer " + accesstoken
+        // Authorization: "Bearer " + accesstoken
       }
     }).then(res => {
       console.log(11)
@@ -92,7 +92,7 @@ Page({
     var shopcarid = data[fatherindex]['cachet'][caindex]['shopcarid']
     var checkboxchoose = data[fatherindex]['cachet'][caindex]['checkboxchoose']
     var cachetKindid = data[fatherindex]['cachetKindid']
-    var accesstoken = wx.getStorageSync(this.data.Token)
+    // var accesstoken = wx.getStorageSync(this.data.Token)
     var userid = wx.getStorageSync(this.data.Userid)
     var allprice=this.data.allprice
     if (checkboxchoose) {//取消选中
@@ -117,7 +117,7 @@ Page({
       },
       header: {
         'content-type': 'application/json',
-        Authorization: "Bearer " + accesstoken
+        // Authorization: "Bearer " + accesstoken
       }
     }).then(res => {
       if (res.data.res =="success") {
@@ -169,7 +169,7 @@ Page({
     var index = e.currentTarget.dataset.caindex//内层数组索引
     var number =1
     var shopcarid = shopdata[fatherindex]['cachet'][index]['shopcarid']
-    var accesstoken = wx.getStorageSync(this.data.Token)
+    // var accesstoken = wx.getStorageSync(this.data.Token)
     var allprice=this.data.allprice
     request({
       url: this.data.WEB + '/api/user/scChangeNum',
@@ -181,7 +181,7 @@ Page({
       },
       header: {
         'content-type': 'application/json',
-        Authorization: "Bearer " + accesstoken
+        // Authorization: "Bearer " + accesstoken
       }
     }).then(res => {
       if (res.data.res == "success") {
@@ -207,7 +207,7 @@ Page({
     var index = e.currentTarget.dataset.caindex//内层数组索引
     var number = 1
     var shopcarid = shopdata[fatherindex]['cachet'][index]['shopcarid']
-    var accesstoken = wx.getStorageSync(this.data.Token)
+    // var accesstoken = wx.getStorageSync(this.data.Token)
     var allprice = this.data.allprice
     request({
       url: this.data.WEB + '/api/user/scChangeNum',
@@ -219,7 +219,7 @@ Page({
       },
       header: {
         'content-type': 'application/json',
-        Authorization: "Bearer " + accesstoken
+        // Authorization: "Bearer " + accesstoken
       }
     }).then(res => {
       if (res.data.res == "success") {
@@ -243,7 +243,7 @@ Page({
     var shopcarid = e.currentTarget.dataset.shopcarid
     var fatherindex = e.currentTarget.dataset.fatherindex
     var caindex = e.currentTarget.dataset.caindex
-    var accesstoken = wx.getStorageSync(this.data.Token)
+    // var accesstoken = wx.getStorageSync(this.data.Token)
     var allprice=this.data.allprice
     var userid = wx.getStorageSync(this.data.Userid)
     var data=this.data.shopcarData
@@ -256,7 +256,7 @@ Page({
       },
       header: {
         'content-type': 'application/json',
-        Authorization: "Bearer " + accesstoken
+        // Authorization: "Bearer " + accesstoken
       }
     }).then(res => {
       if (res.data.res == "success") {
@@ -281,7 +281,7 @@ Page({
     var allprice=this.data.allprice
     var shopcar = this.data.shopcarData
     var userid=wx.getStorageSync(this.data.Userid)
-    var accesstoken = wx.getStorageSync(this.data.Token)
+    // var accesstoken = wx.getStorageSync(this.data.Token)
     var allchoose=this.data.allchoose
     if (allchoose) {//取消全选
       allchoose = false
@@ -307,7 +307,7 @@ Page({
       },
       header: {
         'content-type': 'application/json',
-        Authorization: "Bearer " + accesstoken
+        // Authorization: "Bearer " + accesstoken
       }
     }).then(res => {
       console.log(111222)
@@ -343,7 +343,7 @@ Page({
     var arr = this.checkChoosed()
     console.log(arr);
     var userid = wx.getStorageSync(this.data.Userid)
-    var accesstoken = wx.getStorageSync(this.data.Token)
+    // var accesstoken = wx.getStorageSync(this.data.Token)
     request({
       url: this.data.WEB + '/api/user/alldelete',
       method:'post',
@@ -353,7 +353,7 @@ Page({
       },
       header:{
         'content-type': 'application/json',
-        Authorization: "Bearer " + accesstoken
+        // Authorization: "Bearer " + accesstoken
       }
     }).then(res=>{
       if(res.data.res=="success"){
@@ -457,7 +457,7 @@ Page({
   //数据请求
   datarequest(allprice) {
     var userid = wx.getStorageSync(this.data.Userid)
-    var accesstoken = wx.getStorageSync(this.data.Token)
+    // var accesstoken = wx.getStorageSync(this.data.Token)
     //请求数据
     request({
       url: this.data.WEB + '/api/user/selshopcar',
@@ -467,7 +467,7 @@ Page({
       },
       header: {
         'content-type': 'application/json',
-        Authorization: "Bearer " + accesstoken
+        // Authorization: "Bearer " + accesstoken
       }
     }).then(res => {
       console.log('res', res.data)
@@ -506,7 +506,7 @@ Page({
   },
   allchooseReq() {
     var userid = wx.getStorageSync(this.data.Userid)
-    var accesstoken = wx.getStorageSync(this.data.Token)
+    // var accesstoken = wx.getStorageSync(this.data.Token)
     //请求数据
     request({
       url: this.data.WEB + '/api/user/checkboxFlase',
@@ -516,7 +516,7 @@ Page({
       },
       header: {
         'content-type': 'application/json',
-        Authorization: "Bearer " + accesstoken
+        // Authorization: "Bearer " + accesstoken
       }
     }).then(res => {
       console.log(res.data)

@@ -22,6 +22,7 @@ Page({
     orderdata:[],//订单数据
     allnumber:0,
     allprice:0,
+    explain:'暂无备注',//订单备注
   },
   //返回前一页
   backbefore(){
@@ -54,7 +55,7 @@ Page({
   },
   //请求订单详情信息
    orderRequest(){
-     var accesstoken=wx.getStorageSync(this.data.Token)
+    //  var accesstoken=wx.getStorageSync(this.data.Token)
     //  orderid
      var orderid=this.data.orderid
      console.log('orderid',orderid)
@@ -66,14 +67,20 @@ Page({
       },
       header: {
         'content-type': 'application/json',
-        Authorization: "Bearer " + accesstoken
+        // Authorization: "Bearer " + accesstoken
       }
     }).then(res => {
       console.log('订单详情',res.data)
       if (res.data.status == "success") {
          this.setData({
-           orderdata:res.data.data
+           orderdata:res.data.data,
+          
          })
+        if (res.data.data['explain']!=null){
+          this.setData({
+            explain: res.data.data['explain']
+          })
+        }
          this.datamake()
          console.log('orderdata',this.data.orderdata)
       }
